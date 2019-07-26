@@ -10,18 +10,29 @@ class HomePage extends React.Component {
         this.state = {};
     }
 
+
+    handleProfileClick = () => {
+
+    }
+
+    handleCocktailsClick = () => {
+
+    }
+
+
+
     render() {
         return (
            <div>
-                <div>
-                    <NavBar handleProfileClick={this.handleProfileClick}/>
-                </div>
-                <div>
-                    <Search />
-                </div>
-                <div>
-                    <Random />
-                </div>
+              <div>
+                <NavBar handleProfileClick={this.handleProfileClick} handleFavoritesClick={this.handleFavoritesClick} handleCocktailsClick={this.handleCocktailsClick}/>
+              </div>
+              <div>
+                  <Search />
+              </div>
+              <div>
+                  <Random />
+              </div>
            </div>
         )
     }
