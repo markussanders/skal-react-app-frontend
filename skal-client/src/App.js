@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import LogInSignUp from './components/LogInSignUp';
 
 
 class App extends React.Component {
@@ -23,10 +24,10 @@ class App extends React.Component {
          <div>
            <h2>{drink.name}</h2>
            <img src={drink.image_url} alt='Cocktail drink' />
-           <p>{drink.description.replace(/\\/g, "")}</p>
-           <p>{drink.ingredients.replace(/\\/g, "").replace(/\[/g, "")}</p>
-           <p>{drink.directions.replace(/\\/g, "")}</p>
-           <p>Tools: {drink.tools.replace(/\\/g, "")}</p>
+           <p>{drink.description}</p>
+           <p>{drink.ingredients.map(ingredient => ingredient + ' ' )}</p>
+           <p>{drink.directions}</p>
+           <p>Tools: {drink.tools}</p>
          </div>
 
        )
@@ -37,7 +38,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        {this.renderDrinks()}
+        {/* {this.renderDrinks()} */}
+        <LogInSignUp />
       </div>
     );
   }
