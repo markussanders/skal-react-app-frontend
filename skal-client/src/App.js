@@ -15,7 +15,7 @@ class App extends React.Component {
 
   componentDidMount() {
     fetch('http://localhost:3000/drinks')
-      .then(resp => resp.json()) 
+      .then(resp => resp.json())
       .then(drinks => this.setState({drinks}))
   }
 
@@ -40,7 +40,7 @@ class App extends React.Component {
     return (
       <div className="App">
         {/* {this.renderDrinks()} */}
-        <LogInSignUp />
+        <HomePage />
       </div>
     );
   }

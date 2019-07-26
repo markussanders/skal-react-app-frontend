@@ -47,3 +47,22 @@
   justify-content: flex-end;
   margin-bottom: 36;
 }
+
+.nav-bar-button {
+  border-style: none;
+  border: none;
+  display: inline-block;
+  outline: none;
+}
+
+.nav-bar-button:hover {
+  color: gray;
+}
+
+#nav-bar {
+  list-style: none;
+
+}
+#nav-bar li {
+  display: inline-block;
+}
