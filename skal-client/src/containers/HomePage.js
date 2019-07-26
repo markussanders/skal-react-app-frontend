@@ -19,6 +19,9 @@ class HomePage extends React.Component {
 
     }
 
+    handleFavoritesClick = () => {
+
+    }
 
 
     render() {
