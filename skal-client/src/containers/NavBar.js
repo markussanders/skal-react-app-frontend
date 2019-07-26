@@ -13,14 +13,14 @@ class NavBar extends React.Component {
     return(
       <div>
         <nav>
-          <ul className = "NavBar">
-            <li> <a href='#'> Profile </a>
+          <ul id = "nav-bar" >
+            <li> <button href='#' className="nav-bar-button" onClick ={#}> Profile </button>
               <UserInfo/>
             </li>
-            <li><a href='#'> Favorites </a>
-              <Favorites/>
+            <li> <button href='#' className="nav-bar-button"> Favorites </button>
+                <Favorites/>
             </li>
-            <li><a href='#'> Drink List </a>
+            <li> <button href='#' className="nav-bar-button"> Cocktails </button>
               <DrinkCardsContainer/>
             </li>
           </ul>
