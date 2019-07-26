@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import LogInSignUp from './components/LogInSignUp';
+import HomePage from './containers/HomePage';
 
 
 class App extends React.Component {
