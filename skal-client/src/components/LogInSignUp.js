@@ -6,12 +6,11 @@ class LogInSignUp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            clicked: false,
         }
     }
 
-    handleLogIn = (event) =>  {
-        event.preventDefault();
+    handleLogIn = () =>  {
         return (
             <div>
                 <h2 id="welcome-back">Welcome Back</h2>
@@ -24,8 +23,7 @@ class LogInSignUp extends React.Component {
         )
     }
 
-    handleSignUp(e) {
-        e.preventDefault();
+    handleSignUp() {
         return (
             <div>
                 <h2 id="welcome-back">Welcome</h2>
@@ -44,18 +42,29 @@ class LogInSignUp extends React.Component {
             <div id="landing-page-logo-container">
                 <h2 id="Logo">SKÅL</h2>
                 <div id="login-signup-button-container">
-                    <button id="log-in-button" onClick={(event) => this.handleLogIn}>Login</button>
+                    <button id="log-in-button" onClick={() =>  {
+                         this.handleLogIn()
+                         this.setState({clicked: true})
+                    }}>Login</button>
                      / 
-                    <button id="signup-button" onClick={e => this.handleSignUp}>Signup</button>
+                    <button id="signup-button" onClick={() => this.handleSignUp}>Signup</button>
                 </div>
             </div>
         )
     }
 
+    foo() {
+        if (this.state.clicked) {
+            return this.handleLogIn()
+        } else {
+            return this.renderLogoButtons();
+        }
+    }
+
     render () {
         return (
             <div id="landing-page-main-div">
-               {this.renderLogoButtons()}
+               {this.foo()}
             </div>
         )
     }
