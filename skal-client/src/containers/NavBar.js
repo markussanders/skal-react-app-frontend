@@ -1,8 +1,8 @@
 import React from 'react'
-import './App.css';
+import '../App.css';
 import UserInfo from '../components/UserInfo'
-import Favorites from '../components/Favorites'
-import DrinkIndex from '../components/DrinkIndex'
+import Favorites from './Favorites'
+import DrinkCardsContainer from './DrinkCardsContainer'
 
 class NavBar extends React.Component {
   constructor(props){
@@ -10,7 +10,7 @@ class NavBar extends React.Component {
   }
 
   render() {
-    return(){
+    return(
       <div>
         <nav>
           <ul className = "NavBar">
@@ -21,12 +21,12 @@ class NavBar extends React.Component {
               <Favorites/>
             </li>
             <li><a href='#'> Drink List </a>
-              <DrinkIndex>
+              <DrinkCardsContainer/>
             </li>
           </ul>
         </nav>
       </div>
-    }
+    )
   }
 }
 
