@@ -14,7 +14,7 @@ class NavBar extends React.Component {
       <div>
         <nav>
           <ul id = "nav-bar" >
-            <li> <button href='#' className="nav-bar-button" onClick ={#}> Profile </button>
+            <li> <button href='#' className="nav-bar-button" > Profile </button>
               <UserInfo/>
             </li>
             <li> <button href='#' className="nav-bar-button"> Favorites </button>

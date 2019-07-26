@@ -12,9 +12,17 @@ class HomePage extends React.Component {
 
     render() {
         return (
-            <div>
-                <NavBar />
-            </div>
+           <div>
+                <div>
+                    <NavBar handleProfileClick={this.handleProfileClick}/>
+                </div>
+                <div>
+                    <Search />
+                </div>
+                <div>
+                    <Random />
+                </div>
+           </div>
         )
     }
 
