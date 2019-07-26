@@ -12,7 +12,7 @@ class HomePage extends React.Component {
 
 
     handleProfileClick = () => {
-      
+
     }
 
     handleCocktailsClick = () => {
@@ -23,9 +23,17 @@ class HomePage extends React.Component {
 
     render() {
         return (
-            <div>
+           <div>
+              <div>
                 <NavBar handleProfileClick={this.handleProfileClick} handleFavoritesClick={this.handleFavoritesClick} handleCocktailsClick={this.handleCocktailsClick}/>
-            </div>
+              </div>
+              <div>
+                  <Search />
+              </div>
+              <div>
+                  <Random />
+              </div>
+           </div>
         )
     }
 
