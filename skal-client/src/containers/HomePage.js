@@ -23,7 +23,10 @@ class HomePage extends React.Component {
 
     }
 
+    handleSearch = term => {
 
+    }
+    
     render() {
         return (
            <div>
@@ -31,7 +34,7 @@ class HomePage extends React.Component {
                 <NavBar handleProfileClick={this.handleProfileClick} handleFavoritesClick={this.handleFavoritesClick} handleCocktailsClick={this.handleCocktailsClick}/>
               </div>
               <div>
-                  <Search />
+                  <Search handleSearch={this.handleSearch}/>
               </div>
               <div>
                   <Random />
