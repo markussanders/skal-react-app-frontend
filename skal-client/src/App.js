@@ -13,6 +13,14 @@ class App extends React.Component {
     }
   }
 
+  signup = (val) => {
+    console.log("in signup", val)
+  }
+
+  login = (val) => {
+    console.log('in login', val)
+  }
+
   componentDidMount() {
     fetch('http://localhost:3000/drinks')
       .then(resp => resp.json())
@@ -40,7 +48,8 @@ class App extends React.Component {
     return (
       <div className="App">
         {/* {this.renderDrinks()} */}
-        <HomePage />
+        {/* <HomePage /> */}
+        {<LogInSignUp login={this.login} signup={this.signup}/>}
       </div>
     );
   }
