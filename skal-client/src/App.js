@@ -48,8 +48,8 @@ class App extends React.Component {
     return (
       <div className="App">
         {/* {this.renderDrinks()} */}
-        {/* <HomePage /> */}
-        {<LogInSignUp login={this.login} signup={this.signup}/>}
+        <HomePage drinks={this.state.drinks} />
+        {/* {<LogInSignUp login={this.login} signup={this.signup}/>} */}
       </div>
     );
   }

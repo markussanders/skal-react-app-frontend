@@ -7,12 +7,14 @@ import Random from './Random';
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            searchedDrinks: [],
+        };
     }
 
 
     handleProfileClick = () => {
-
+        
     }
 
     handleCocktailsClick = () => {
@@ -23,8 +25,12 @@ class HomePage extends React.Component {
 
     }
 
-    handleSearch = term => {
-
+    handleSearch = target => {
+       let term = target.value;
+       target.value = '';
+       let searchedDrinks = this.props.drinks.filter(drink => drink.name.toLowerCase() === term.toLowerCase())
+       console.log(searchedDrinks)
+       this.setState({ searchedDrinks })
     }
     
     render() {
@@ -34,7 +40,7 @@ class HomePage extends React.Component {
                 <NavBar handleProfileClick={this.handleProfileClick} handleFavoritesClick={this.handleFavoritesClick} handleCocktailsClick={this.handleCocktailsClick}/>
               </div>
               <div>
-                  <Search handleSearch={this.handleSearch}/>
+                  <Search handleSearch={this.handleSearch} drinks={this.props.drinks}/>
               </div>
               <div>
                   <Random />
