@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import LogInSignUp from './components/LogInSignUp';
 import HomePage from './containers/HomePage';
+import DrinkCardsContainer from './containers/DrinkCardsContainer';
 
 
 class App extends React.Component {
@@ -11,6 +12,14 @@ class App extends React.Component {
     this.state = {
       drinks: [],
     }
+  }
+
+  signup = (val) => {
+    console.log("in signup", val)
+  }
+
+  login = (val) => {
+    console.log('in login', val)
   }
 
   componentDidMount() {
@@ -40,7 +49,9 @@ class App extends React.Component {
     return (
       <div className="App">
         {/* {this.renderDrinks()} */}
-        <HomePage />
+        <HomePage drinks={this.state.drinks} />
+        {/* <DrinkCardsContainer drinks={this.state.drinks}/> */}
+        {/* {<LogInSignUp login={this.login} signup={this.signup}/>} */}
       </div>
     );
   }
