@@ -53,7 +53,8 @@ class HomePage extends React.Component {
             console.log(randomElement)
             if (!randomElements.includes(randomElement)) {
                 randomElements.push(randomElement);
-
+            } else if (randomElements.includes(randomElement)) {
+                i--;
             }
         }        
         this.setState({randomDrinks: randomElements})
