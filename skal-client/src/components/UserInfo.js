@@ -15,3 +15,4 @@ class UserInfo extends React.Component {
 }
 
 export default UserInfo;
+//this is user 
