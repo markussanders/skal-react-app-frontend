@@ -67,19 +67,51 @@
   display: inline-block;
 }
 
+.drink-card {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
 
+.drink-card .drink-card-img {
+  visibility: visible;
+}
 .drink-card .drink-card-name {
-  display: none;
+  margin: 10px;
+  text-align: right;
+  visibility: hidden;
 }
 
 .drink-card:hover .drink-card-name {
-  display: block;
+  position: absolute;
+  visibility: visible;
+  top: 0;
 }
-
+.drink-card:hover img {
+  background-color: #fff;
+  opacity: 0.25;
+}
 .drink-card .drink-card-desc {
-  display: none;
+  margin: 20px;
+  position: absolute;
+  visibility: hidden;
 }
 
 .drink-card:hover .drink-card-desc {
-  display: block;
+  position: absolute;
+  visibility: visible;
+  top: 40px;
+}
+.drink-card {
+  /* background-color: #fff;
+  opacity: 0.25; */
+}
+
+#random-drinks-container {
+  display: inline-flex;
+}
+
+#random-drinks-container img {
+  max-width: 400px;
+  max-height: 400px;
 }

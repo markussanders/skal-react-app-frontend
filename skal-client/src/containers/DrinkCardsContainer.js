@@ -12,7 +12,7 @@ class DrinkCardsContainer extends React.Component {
 
   render() {
     return(
-      <div>
+      <div id="drink-cards-container">
       {console.log('in drink cards container')}        
       {this.renderDrinkCards()}
       </div>
