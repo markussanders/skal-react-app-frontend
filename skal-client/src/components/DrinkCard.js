@@ -3,8 +3,6 @@ import React from 'react';
 
 const DrinkCard = props =>  {
      const {drink} = props;
-    console.log('gotHere')
-
 
         return (
             <div className="drink-card">

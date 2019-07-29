@@ -15,11 +15,11 @@ class NavBar extends React.Component {
         <nav>
           <ul id = "nav-bar" >
             <li>
-            <button href='#' className="nav-bar-button" onClick ={this.props.handleProfileClick}> Profile </button>
+            <button href='#' className="nav-bar-button" onClick={this.props.handleProfileClick}> Profile </button>
             </li>
-            <li> <button href='#' className="nav-bar-button" onClick ={this.props.handleFavoritesClick}> Favorites </button>
+            <li> <button href='#' className="nav-bar-button" onClick={this.props.handleFavoritesClick}> Favorites </button>
             </li>
-            <li> <button href='#' className="nav-bar-button" onClick ={this.props.handleCocktailsClick}> Cocktails </button>
+            <li> <button href='#' className="nav-bar-button" onClick={this.props.handleCocktailsClick}> Cocktails </button>
             </li>
           </ul>
         </nav>

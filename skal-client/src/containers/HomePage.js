@@ -17,14 +17,19 @@ class HomePage extends React.Component {
 
 
     handleProfileClick = () => {
+        console.log('in profile');
         
     }
 
-    handleCocktailsClick = () => {
+    handleCocktailsClick = () =>  {
         this.setState({clickedCocktails: true});
+        this.setState({searchedDrinks: []})
+        console.log("handleCocktailsClick")
+        // return <DrinkCardsContainer drinks={this.props.drinks} />;
     }
 
     handleFavoritesClick = () => {
+        console.log('in favorites')
 
     }
 
@@ -32,17 +37,16 @@ class HomePage extends React.Component {
        let term = target.value;
        target.value = '';
        let searchedDrinks = this.props.drinks.filter(drink => drink.name.toLowerCase() === term.toLowerCase())
-       this.setState({ searchedDrinks })
+       this.setState({ searchedDrinks });
+       this.setState({clickedCocktails: false});
     }
 
     renderDrinkCardsContainer = () => {
         let clickedCocktails = this.state.clickedCocktails;
         let searchedDrinks = this.state.searchedDrinks;
         if (clickedCocktails) {
-            this.setState({searchedDrinks: []})
             return <DrinkCardsContainer drinks={this.props.drinks} />;
         } else if (searchedDrinks.length > 0) {
-            this.setState({clickedCocktails: false});
             return  <DrinkCardsContainer drinks={this.state.searchedDrinks} />;
         }
         return <Random />;
@@ -55,7 +59,7 @@ class HomePage extends React.Component {
                 <NavBar handleProfileClick={this.handleProfileClick} handleFavoritesClick={this.handleFavoritesClick} handleCocktailsClick={this.handleCocktailsClick}/>
               </div>
               <div>
-                  <Search handleSearch={this.handleSearch} drinks={this.props.drinks}/>
+                <Search handleSearch={this.handleSearch} drinks={this.props.drinks}/>
               </div>
               <div>
                 {this.renderDrinkCardsContainer()}
