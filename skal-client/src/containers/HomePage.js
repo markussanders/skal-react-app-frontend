@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import Search from './Search';
 import Random from './Random';
 import DrinkCardsContainer from './DrinkCardsContainer';
+import UserInfo from '../components/UserInfo';
 
 
 class HomePage extends React.Component {
@@ -12,6 +13,7 @@ class HomePage extends React.Component {
             searchedDrinks: [],
             clickedCocktails: false,
             randomDrinks: [],
+            clickedProfile: false
         };
     }
 
@@ -21,8 +23,12 @@ class HomePage extends React.Component {
 
 
     handleProfileClick = () => {
+        this.setState({clickedProfile: true});
+        this.setState({clickedCocktails: false});
+        this.setState({searchedDrinks: []})
         console.log('in profile');
-        
+        return <UserInfo drinks={this.props.drinks}/>
+
     }
 
     handleCocktailsClick = () =>  {
@@ -45,6 +51,14 @@ class HomePage extends React.Component {
        this.setState({clickedCocktails: false});
     }
 
+    handleHomePage = () => {
+      this.setState({clickedCocktails: false});
+      this.setState({searchedDrinks: []})
+      this.setState({clickedProfile: false});
+      this.generateRandomDrinks()
+      this.renderDrinkCardsContainer()
+    }
+
     generateRandomDrinks = () => {
         const arr = this.props.drinks;
         let randomElements = [];
@@ -56,7 +70,7 @@ class HomePage extends React.Component {
             } else if (randomElements.includes(randomElement)) {
                 i--;
             }
-        }        
+        }
         this.setState({randomDrinks: randomElements})
     }
 
@@ -68,23 +82,27 @@ class HomePage extends React.Component {
             return <DrinkCardsContainer drinks={this.props.drinks} />;
         } else if (searchedDrinks.length > 0) {
             return <DrinkCardsContainer drinks={this.state.searchedDrinks} />;
-        } 
+        }
+        else if (this.state.clickedProfile === true) {
+            return <UserInfo />;
+        }
         return <Random drinks = {this.state.randomDrinks} />;
     }
-    
+
+
     render() {
         console.log('hp', this.props)
         return (
            <div>
               <div>
-                <NavBar handleProfileClick={this.handleProfileClick} handleFavoritesClick={this.handleFavoritesClick} handleCocktailsClick={this.handleCocktailsClick}/>
+                <NavBar handleProfileClick={this.handleProfileClick} handleFavoritesClick={this.handleFavoritesClick} handleCocktailsClick={this.handleCocktailsClick} handleHomePage={this.handleHomePage}/>
               </div>
               <div>
                 <Search handleSearch={this.handleSearch} drinks={this.props.drinks}/>
               </div>
               <div>
                 {this.renderDrinkCardsContainer()}
-              </div> 
+              </div>
            </div>
         )
     }
