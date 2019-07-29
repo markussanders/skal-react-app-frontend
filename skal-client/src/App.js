@@ -25,7 +25,10 @@ class App extends React.Component {
   componentDidMount() {
     fetch('http://localhost:3000/drinks')
       .then(resp => resp.json())
-      .then(drinks => this.setState({drinks}))
+      .then(drinks => {
+        console.log('drinks', drinks)
+        this.setState({drinks})
+      })
   }
 
   renderDrinks = () => {
@@ -46,10 +49,11 @@ class App extends React.Component {
 
 
   render() {
+    console.log(this.state)
     return (
       <div className="App">
         {/* {this.renderDrinks()} */}
-        <HomePage drinks={this.state.drinks} />
+        {this.state.drinks.length > 0 ? <HomePage drinks={this.state.drinks} /> : null}
         {/* <DrinkCardsContainer drinks={this.state.drinks}/> */}
         {/* {<LogInSignUp login={this.login} signup={this.signup}/>} */}
       </div>

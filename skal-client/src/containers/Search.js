@@ -20,7 +20,10 @@ class Search extends React.Component {
                             this.setState({term: e.target})
                         }}
                     ></input>
-                    <button type="submit" onClick={() => this.props.handleSearch(this.state.term)}>Search</button>
+                    <button type="submit" onClick={(e) => {
+                        e.preventDefault();
+                        this.props.handleSearch(this.state.term)
+                    }}>Search</button>
                 </form>
             </div>
         )
