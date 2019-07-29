@@ -66,3 +66,20 @@
 #nav-bar li {
   display: inline-block;
 }
+
+
+.drink-card .drink-card-name {
+  display: none;
+}
+
+.drink-card:hover .drink-card-name {
+  display: block;
+}
+
+.drink-card .drink-card-desc {
+  display: none;
+}
+
+.drink-card:hover .drink-card-desc {
+  display: block;
+}

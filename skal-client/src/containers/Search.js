@@ -10,7 +10,6 @@ class Search extends React.Component {
     }
     
     render() {
-        console.log(this.state.term)
         return (
             <div id="search-bar">
                 <form onSubmit={this.handleSubmit}>
