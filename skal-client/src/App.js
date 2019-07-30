@@ -11,15 +11,35 @@ class App extends React.Component {
     super(props);
     this.state = {
       drinks: [],
+      loggedIn: false,
     }
   }
 
   signup = (val) => {
     console.log("in signup", val)
+    this.setState({loggedIn: true})
+    // return this.state.drinks.length > 0 ? <HomePage drinks = {
+    //   this.state.drinks
+    // }
+    // /> : null}
   }
 
   login = (val) => {
     console.log('in login', val)
+    this.setState({loggedIn: true})
+
+        // return this.state.loggedIn ? <HomePage drinks = {
+        //   this.state.drinks
+        // }
+        // /> : null}
+  }
+
+  handleLogInSignUp = () => {
+    if (this.state.loggedIn) {
+      return <HomePage drinks = {this.state.drinks} />;
+    } else {
+      return <LogInSignUp login={this.login} signup={this.signup}/>
+    }
   }
 
   componentDidMount() {
@@ -51,7 +71,8 @@ class App extends React.Component {
     return (
       <div className="App">
         {/* {this.renderDrinks()} */}
-        {this.state.drinks.length > 0 ? <HomePage drinks={this.state.drinks} /> : null}
+        {this.handleLogInSignUp()}
+        {/* {this.state.drinks.length > 0 ? <HomePage drinks={this.state.drinks} /> : null} */}
         {/* <DrinkCardsContainer drinks={this.state.drinks}/> */}
         {/* {<LogInSignUp login={this.login} signup={this.signup}/>} */}
       </div>
