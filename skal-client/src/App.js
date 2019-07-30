@@ -12,12 +12,18 @@ class App extends React.Component {
     this.state = {
       drinks: [],
       loggedIn: false,
+      username: '',
+      password: '',
+      currentUser: null,
     }
   }
 
   signup = (val) => {
-    console.log("in signup", val)
-    this.setState({loggedIn: true})
+    this.setState({
+      username: val.username,
+      loggedIn: true
+    })
+    this.fetchUser();
     // return this.state.drinks.length > 0 ? <HomePage drinks = {
     //   this.state.drinks
     // }
@@ -25,9 +31,8 @@ class App extends React.Component {
   }
 
   login = (val) => {
-    console.log('in login', val)
-    this.setState({loggedIn: true})
-
+    this.setState({username: val.username, loggedIn: true})
+    this.fetchUser();
         // return this.state.loggedIn ? <HomePage drinks = {
         //   this.state.drinks
         // }
@@ -36,10 +41,27 @@ class App extends React.Component {
 
   handleLogInSignUp = () => {
     if (this.state.loggedIn) {
-      return <HomePage drinks = {this.state.drinks} />;
+      return <HomePage drinks={this.state.drinks} currentUser={this.state.currentUser} />;
     } else {
       return <LogInSignUp login={this.login} signup={this.signup}/>
     }
+  }
+
+  fetchUser = () => {
+    console.log(this.state.username, "this.state.username")
+    fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: this.state.username,
+        })
+      })
+      .then(resp => resp.json())
+      .then(currentUser => this.setState({
+        currentUser
+      }))
   }
 
   componentDidMount() {
@@ -47,7 +69,7 @@ class App extends React.Component {
       .then(resp => resp.json())
       .then(drinks => {
         this.setState({drinks})
-      })
+      });
   }
 
   renderDrinks = () => {

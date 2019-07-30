@@ -21,12 +21,15 @@ class LogInSignUp extends React.Component {
                     id="login-signup-form" 
                     onSubmit={(e) =>  {
                         e.preventDefault()
-                        console.log(e.target.value)
-                        this.props.login(e.target.value);
+                        const credentials = {
+                            username: this.state.username,
+                            password: this.state.password,
+                        }
+                        this.props.login(credentials);
                     }}
-                    value={() => console.log('value of form')}>
-                    <label>Username<input className="input-form"></input></label>
-                    <label>Password<input className="input-form" type="password"></input></label>
+                    >
+                    <label>Username<input className="input-form" onChange={e => this.setState({username: e.target.value})}></input></label>
+                    <label>Password<input className="input-form" type="password" onChange={e => this.setState({password: e.target.value})}></input></label>
                     <button type="submit" value="Enter">Enter</button>
                      <button onClick={(e) => {
                         this.setState({clicked: 'signup'});
@@ -41,11 +44,14 @@ class LogInSignUp extends React.Component {
             <div>
                 <h2 id="welcome-back">Welcome</h2>
                 <form id="login-signup-form" onSubmit={(e) => {
-                    console.log(this.props)
-                    this.props.signup(e.target.value);
+                    const credentials = {
+                        username: this.state.username,
+                        password: this.state.password,
+                    }
+                    this.props.signup(credentials);
                 }}>
-                    <label>Username<input className="input-form"></input></label>
-                    <label>Password<input className="input-form" type="password"></input></label>
+                    <label>Username<input className="input-form" onChange={e => this.setState({username: e.target.value})}></input></label>
+                    <label>Password<input className="input-form" type="password" onChange={e => this.setState({password: e.target.value})}></input></label>
                     <label>Password Confirmation<input className="input-form" type="password"></input></label>
                     <button type="submit" value="Enter" onClick={e => e.preventDefault()}>Enter</button>
                     <button onClick={(e) => {
