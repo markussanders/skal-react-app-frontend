@@ -3,7 +3,9 @@ import NavBar from './NavBar';
 import Search from './Search';
 import Random from './Random';
 import DrinkCardsContainer from './DrinkCardsContainer';
+import DrinkSpecs from '../components/DrinkSpecs';
 import UserInfo from '../components/UserInfo';
+
 
 
 class HomePage extends React.Component {
@@ -13,6 +15,7 @@ class HomePage extends React.Component {
             searchedDrinks: [],
             clickedCocktails: false,
             randomDrinks: [],
+            specificDrink: false,
             clickedProfile: false
         };
     }
@@ -32,9 +35,8 @@ class HomePage extends React.Component {
     }
 
     handleCocktailsClick = () =>  {
-        this.setState({clickedCocktails: true});
+        this.setState({clickedCocktails: true, specificDrink: false});
         this.setState({searchedDrinks: []})
-        console.log("handleCocktailsClick")
         return <DrinkCardsContainer drinks={this.props.drinks} />;
     }
 
@@ -48,7 +50,7 @@ class HomePage extends React.Component {
        target.value = '';
        let searchedDrinks = this.props.drinks.filter(drink => drink.name.toLowerCase() === term.toLowerCase())
        this.setState({ searchedDrinks });
-       this.setState({clickedCocktails: false});
+       this.setState({clickedCocktails: false, specificDrink: false});
     }
 
     handleHomePage = () => {
@@ -64,7 +66,6 @@ class HomePage extends React.Component {
         let randomElements = [];
         for (let i = 0; i < 3; i++) {
             let randomElement = arr[Math.floor(Math.random() * arr.length)];
-            console.log(randomElement)
             if (!randomElements.includes(randomElement)) {
                 randomElements.push(randomElement);
             } else if (randomElements.includes(randomElement)) {
@@ -72,6 +73,10 @@ class HomePage extends React.Component {
             }
         }
         this.setState({randomDrinks: randomElements})
+    }
+    
+    renderDrinkSpecs = drink => {
+        this.setState({specificDrink: drink});
     }
 
 
@@ -82,16 +87,15 @@ class HomePage extends React.Component {
             return <DrinkCardsContainer drinks={this.props.drinks} />;
         } else if (searchedDrinks.length > 0) {
             return <DrinkCardsContainer drinks={this.state.searchedDrinks} />;
-        }
-        else if (this.state.clickedProfile === true) {
+        } else if (this.state.specificDrink) {
+            return <DrinkSpecs drink={this.state.specificDrink} renderDrinkSpecs={this.renderDrinkSpecs} />
+        } else if (this.state.clickedProfile === true) {
             return <UserInfo />;
         }
         return <Random drinks = {this.state.randomDrinks} />;
     }
 
-
     render() {
-        console.log('hp', this.props)
         return (
            <div>
               <div>
