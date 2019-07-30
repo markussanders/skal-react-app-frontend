@@ -26,7 +26,6 @@ class App extends React.Component {
     fetch('http://localhost:3000/drinks')
       .then(resp => resp.json())
       .then(drinks => {
-        console.log('drinks', drinks)
         this.setState({drinks})
       })
   }
@@ -49,7 +48,6 @@ class App extends React.Component {
 
 
   render() {
-    console.log(this.state)
     return (
       <div className="App">
         {/* {this.renderDrinks()} */}
