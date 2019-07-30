@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Comments from './Comments';
 
 const DrinkSpecs = props => {
     console.log("IN DRINK SPECS");
@@ -24,6 +24,9 @@ const DrinkSpecs = props => {
             </p>
             <p id="drink-spect-directions">{drink.directions}</p>
             <h5>Favorited by: <span id="favorited-count">{drink.favorited_count}</span></h5>
+            <div id="drink-spec-comments-cont">
+                <Comments />
+            </div>
         </div>
     )
 }
