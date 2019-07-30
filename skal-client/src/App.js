@@ -14,54 +14,59 @@ class App extends React.Component {
       loggedIn: false,
       username: '',
       password: '',
-      currentUser: null,
+      currentUser: {},
     }
   }
 
-  signup = (val) => {
+  signup = (credentials) => {
     this.setState({
-      username: val.username,
+      username: credentials.username,
       loggedIn: true
     })
-    this.fetchUser();
+    return this.state.loggedIn ? this.fetchUser(credentials) : null;
     // return this.state.drinks.length > 0 ? <HomePage drinks = {
     //   this.state.drinks
     // }
     // /> : null}
   }
 
-  login = (val) => {
-    this.setState({username: val.username, loggedIn: true})
-    this.fetchUser();
-        // return this.state.loggedIn ? <HomePage drinks = {
-        //   this.state.drinks
-        // }
-        // /> : null}
+  login = (credentials) => {
+    this.setState({username: credentials.username, loggedIn: true});
+    this.fetchUser(credentials.username);
   }
 
   handleLogInSignUp = () => {
-    if (this.state.loggedIn) {
+    if (this.state.currentUser.id) {
       return <HomePage drinks={this.state.drinks} currentUser={this.state.currentUser} />;
     } else {
       return <LogInSignUp login={this.login} signup={this.signup}/>
     }
   }
 
-  fetchUser = () => {
-    console.log(this.state.username, "this.state.username")
-    fetch('http://localhost:3000/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          username: this.state.username,
+  fetchUser = (username) => {
+    // fetch('http://localhost:3000/users', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //       username: username,
+    //     })
+    //   })
+    //   .then(resp => resp.json())
+    //   .then(user =>  {
+    //     console.log('fetch user = ', user);
+    //     this.setState({
+    //     currentUser: user
+    //   })
+      fetch('http://localhost:3000/users')
+        .then(resp => resp.json())
+        .then(users => {
+         let foundUser = users.filter(user => user.username === username)
+         if (foundUser) {
+           this.setState({currentUser: foundUser[0]})
+         }
         })
-      })
-      .then(resp => resp.json())
-      .then(currentUser => this.setState({
-        currentUser
-      }))
   }
 
   componentDidMount() {
