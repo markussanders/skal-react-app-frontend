@@ -107,7 +107,10 @@ class App extends React.Component {
         <Route exact path='/home' render={(routeProps) => {
           console.log(this.state.currentUser)
           return (
-            <div>
+            <div id="home-page">
+              <video autoPlay muted loop id="fizz-video">
+                <source src="./media/fizz.mp4" type="video/mp4" />
+              </video>
               <NavBar {...routeProps} />
               <HomePage {...routeProps} drinks={drinks} currentUser={currentUser} />
             </div>
