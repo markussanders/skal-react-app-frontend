@@ -1,11 +1,11 @@
 import React from 'react';
 import DrinkSpecs from './DrinkSpecs';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 
 
 const DrinkCard = props =>  {
     const {drink} = props;
-    console.log(props)
+    console.log('drinkcard', props)
     return (
         <div className="drink-card" onClick={() => {
             props.renderDrinkSpecs(drink);
@@ -17,7 +17,6 @@ const DrinkCard = props =>  {
             <p className="drink-card-desc">{drink.description}</p>
         </div>
     )
-
 }
 
 
