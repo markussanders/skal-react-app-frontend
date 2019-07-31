@@ -1,6 +1,5 @@
 import React from 'react'
 import Search from '../containers/Search';
-import Favorites from '../containers/Favorites'
 import DrinkCardsContainer from '../containers/DrinkCardsContainer';
 
 class UserInfo extends React.Component {
@@ -21,18 +20,6 @@ class UserInfo extends React.Component {
       })
   }
 
-  // fetchFavoritesDrinks = (userFavorites) => {
-  //   let favoriteDrinks;
-  //   let drinkIds = userFavorites.map(fav => fav.drink_id);
-  //   return fetch('http://localhost:3000/drinks')
-  //     .then(resp => resp.json())
-  //     .then(drinks => {
-  //       favoriteDrinks = drinks.filter(drink => drinkIds.includes(drink.id));
-  //       return favoriteDrinks;
-  //     })
-  // }
-
-
   fetchFavorites = () => {
 
   };
@@ -43,10 +30,10 @@ class UserInfo extends React.Component {
       <div>
           <div>
               <ul id = "profile-nav-bar" >
-                <li>
+                <li className="list-item">
                 <button href='#' className="nav-bar-button" onClick={() => this.props.history.push('/edit-profile')}> Edit Profile </button>
                 </li>
-                <li> <button href='#' className="nav-bar-button" onClick={this.handleViewBarCartClick}> View Bar Cart </button>
+                <li className="list-item"> <button href='#' className="nav-bar-button" onClick={this.handleViewBarCartClick}> View Bar Cart </button>
                 </li>
               </ul>
               <div>
@@ -54,8 +41,7 @@ class UserInfo extends React.Component {
               </div>
           </div>
           < div >
-             <DrinkCardsContainer drinks={this.state.favorites}
-/>
+             <DrinkCardsContainer drinks={this.state.favorites}/>
             {/* <Favorites /> */}
           </div>
       </div>

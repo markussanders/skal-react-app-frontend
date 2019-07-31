@@ -95,22 +95,17 @@ class App extends React.Component {
       <div className="App">
 
 
-      <Route exact path='/' render={(routeProps) => {
-        return <Redirect to = "/login" / >
-        }
-        }
-        />
+      <Route exact path='/' render={(routeProps) => <Redirect to = "/login" / >}/>
         <Route exact path='/login' render={(routeProps) => {
-        return <LogInSignUp {...routeProps} login={this.login} setUser={this.setUser} createUser={this.createUser} /> }}
+        return (
+          <LogInSignUp {...routeProps} login={this.login} setUser={this.setUser} createUser={this.createUser} />
+        ) }}
         />
 
         <Route exact path='/home' render={(routeProps) => {
           console.log(this.state.currentUser)
           return (
             <div id="home-page">
-              <video autoPlay muted loop id="fizz-video">
-                <source src="./media/fizz.mp4" type="video/mp4" />
-              </video>
               <NavBar {...routeProps} />
               <HomePage {...routeProps} drinks={drinks} currentUser={currentUser} />
             </div>
@@ -121,7 +116,6 @@ class App extends React.Component {
           return (
             <div>
               <NavBar {...routeProps} drinks={this.state.drinks}/>
-
               <DrinkCardsContainer {...routeProps} drinks={drinks} />
             </div>
           )

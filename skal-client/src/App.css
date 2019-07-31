@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC&display=swap');
 .App {
   text-align: center;
 }
@@ -39,6 +40,7 @@ body, html {
 
 
 #landing-page-main-div {
+  font-family: 'Alegreya Sans SC', sans-serif;
   background-color: black;
   position: absolute;
   background: url('https://media.timeout.com/images/100898539/image.jpg') no-repeat center fixed;
@@ -106,7 +108,12 @@ body, html {
   height: 30px;
   text-align: center;
   background: transparent;
+  outline: 0;
   /* border-radius: 20px; */
+}
+
+li {
+  list-style: none;
 }
 
 #search-button {
@@ -218,41 +225,56 @@ body, html {
 }
 
 #welcome-back {
-  color: white;
+  margin-left: 2px;
+  color:whitesmoke;
   font-size: 3em;
 }
 
 #login-signup-container {
+  /* background:whitesmoke;
+  opacity: .5; */
   display: flex;
   justify-content: center;
   align-content: center;
   flex-direction: column;
   margin-bottom: 6%;
-  
 }
 
+
 .input {
-  color: white;
+  position: relative;
+  opacity: 1;
+  color: whitesmoke;
   font-size: 2em;
   margin-right: .5em;
 }
 
-#landing-page-main-div input {
+/* #landing-page-main-div input {
   background: none;
   background-color: transparent;
   border: none;
   font-size: .5em;
   outline: 0;
   border-bottom: 1px;
+} */
+#login-signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: left;
 }
 
-.input.input-form {
+#login-signup-form .input-form {
   flex-grow: 1;
+  width: 5em;
   padding-left: 20px;
+  color: goldenrod;
   font-size: 2em;
-  color: white;
+  border: none;
+  border-bottom: 2px solid whitesmoke;
+  background-color: transparent;
+  outline: 0;
 }
-
 
 .log-in-button {
   color: goldenrod;
@@ -289,10 +311,64 @@ body, html {
   color: #fff;
   background: maroon;
 }
+
 .sign-up-button:hover,
 .sign-up-button:active {
   color: #fff;
   background: maroon;
 }
 
+#drink-info {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  max-width: 80%;
+  text-align: center;
+  margin-left: 10%;
+}
 
+.list-item {
+  list-style: none;
+}
+
+.password-div {
+  padding-bottom: 2em;
+}
+
+#name-age-div #age-input {
+  width: 2em;
+}
+
+#log-in-buttons {
+  padding-left: 13%;
+}
+#sign-up-buttons {
+  padding-left: 30%;
+}
+
+#drink-info {
+  font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+#drink-description {
+  width: 80%;
+  font-size: 40px;
+}
+#drink-spec-ingredients {
+  width: 40%;
+}
+
+#drink-spec-tools-cont {
+  width: 40%;
+}
+#drink-spec-directions{
+  width: 80%;
+}
+
+#drink-spec-comments-cont {
+  width: 40%;
+}
+
+#favorites-cont {
+  width: 40%;
+}
