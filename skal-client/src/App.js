@@ -2,11 +2,12 @@ import React from 'react';
 import './App.css';
 import LogInSignUp from './components/LogInSignUp';
 import HomePage from './containers/HomePage';
-import { Route, Redirect } from 'react-router-dom'; 
+import { Route, Redirect } from 'react-router-dom';
 import DrinkCardsContainer from './containers/DrinkCardsContainer';
 import UserInfo from './components/UserInfo';
 import NavBar from './containers/NavBar';
 import DrinkSpecs from './components/DrinkSpecs';
+import EditProfile from './components/EditProfile'
 
 class App extends React.Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class App extends React.Component {
        })
    }
 
-  
+
   fetchUser = (username) => {
     fetch('http://localhost:3000/users')
       .then(resp => resp.json())
@@ -71,7 +72,7 @@ class App extends React.Component {
             this.setState({currentUser: user, isLoggedIn: true});
             return true;
           })
-          
+
       } else {
         return false;
       }
@@ -88,10 +89,10 @@ class App extends React.Component {
 
 
   render() {
-    const { drinks, currentUser } = this.state 
+    const { drinks, currentUser } = this.state
      console.log(this.state.currentUser)
     return (
-      <div className="App"> 
+      <div className="App">
 
 
       <Route exact path='/' render={(routeProps) => {
@@ -102,11 +103,11 @@ class App extends React.Component {
         <Route exact path='/login' render={(routeProps) => {
         return <LogInSignUp {...routeProps} login={this.login} setUser={this.setUser} createUser={this.createUser} /> }}
         />
-        
+
         <Route exact path='/home' render={(routeProps) => {
           console.log(this.state.currentUser)
           return (
-            <div> 
+            <div>
               <NavBar {...routeProps} />
               <HomePage {...routeProps} drinks={drinks} currentUser={currentUser} />
             </div>
@@ -116,17 +117,29 @@ class App extends React.Component {
         <Route exact path='/cocktails' render={(routeProps) => {
           return (
             <div>
-              <NavBar {...routeProps} />
+              <NavBar {...routeProps} drinks={this.state.drinks}/>
+
               <DrinkCardsContainer {...routeProps} drinks={drinks} />
             </div>
           )
         }} />
 
+
+
         <Route exact path='/profile' render={(routeProps) => {
           return (
             <div>
-              <NavBar {...routeProps} />
+              <NavBar {...routeProps} drinks={this.state.drinks}/>
               <UserInfo {...routeProps} currentUser={currentUser} drinks={this.state.drinks} />
+            </div>
+          )
+        }} />
+
+        <Route exact path='/edit-profile' render={(routeProps) => {
+          return (
+            <div>
+              <NavBar {...routeProps} drinks={this.state.drinks}/>
+              <EditProfile currentUser={currentUser}/>
             </div>
           )
         }} />
@@ -136,7 +149,7 @@ class App extends React.Component {
           console.log(foundDrink)
           return (
             <div>
-              <NavBar {...routeProps} />
+              <NavBar {...routeProps} drinks={this.state.drinks}/>
               <DrinkSpecs drink={foundDrink} />
             </div>
           )
