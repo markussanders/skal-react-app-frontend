@@ -2,15 +2,18 @@ import React from 'react';
 import NavBar from './NavBar';
 import Search from './Search';
 import Random from './Random';
+import { shuffle } from 'lodash'
 import DrinkCardsContainer from './DrinkCardsContainer';
 import DrinkSpecs from '../components/DrinkSpecs';
 import UserInfo from '../components/UserInfo';
 
 
 
+
 class HomePage extends React.Component {
         constructor(props) {
             super(props);
+            console.log(props)
             this.state = {
                 searchedDrinks: [],
                 randomDrinks: [],
@@ -50,16 +53,19 @@ class HomePage extends React.Component {
         // }
 
         generateRandomDrinks = () => {
-            const arr = this.state.drinks;
-            let randomElements = [];
-            for (let i = 0; i < 3; i++) {
-                let randomElement = arr[Math.floor(Math.random() * arr.length)];
-                if (!randomElements.includes(randomElement)) {
-                    randomElements.push(randomElement);
-                } else if (randomElements.includes(randomElement)) {
-                    i--;
-                }
-            }
+            // const arr = this.state.drinks
+            let randomElements = shuffle(this.state.drinks).slice(0, 3)
+
+
+            // for (let i = 0; i < 3; i++) {
+            //     let randomElement = arr[Math.floor(Math.random() * arr.length)];
+            //     if (!randomElements.includes(randomElement)) {
+            //         randomElements.push(randomElement);
+            //     } else if (randomElements.includes(randomElement)) {
+            //         console.log('here')
+            //         i--;
+            //     }
+            // }
             this.setState({
                 randomDrinks: randomElements
             })

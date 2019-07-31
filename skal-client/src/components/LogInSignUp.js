@@ -7,8 +7,11 @@ class LogInSignUp extends React.Component {
         super(props);
         this.state = {
             clicked: '',
+            name: '',
+            age: '',
             username: '',
             password: '',
+            passwordConfirmation: '',
         }
     }
 
@@ -16,7 +19,7 @@ class LogInSignUp extends React.Component {
     renderLogInForm = () =>  {
         
         return (
-            < div id = "login-signup-container" >
+            <div id = "login-signup-container" >
                 <h2 id="welcome-back">Welcome Back</h2>
                 <form 
                     id="login-signup-form" 
@@ -26,9 +29,19 @@ class LogInSignUp extends React.Component {
                             username: this.state.username,
                             password: this.state.password,
                         }
-                        if (this.props.login(credentials)) {
-                            this.props.history.push('/home');
-                        }
+                        fetch('http://localhost:3000/users')
+                            .then(resp => resp.json())
+                            .then(users => {
+                                console.log(2)
+                                let foundUser = users.filter(user => user.username === this.state.username)
+                                if (foundUser) {
+                                    this.props.setUser(foundUser)
+                                    this.props.history.push('/home');
+ 
+                                }
+                            })
+
+             
                     }}
                     >
                     <label className="input">Username<input className="input-form" type="text" onChange={e => this.setState({username: e.target.value})}></input></label>
@@ -47,16 +60,25 @@ class LogInSignUp extends React.Component {
             <div id="login-signup-container">
                 <h2 id="welcome-back">Welcome</h2>
                 <form id="login-signup-form" onSubmit={(e) => {
+                    e.preventDefault();
                     const credentials = {
                         username: this.state.username,
                         password: this.state.password,
+                        passwordConfirmation: this.state.passwordConfirmation,
+                        age: this.state.age,
+                        name: this.state.name,
                     }
-                    this.props.signup(credentials);
+                    console.log(this.state);
+                    if (this.props.createUser(credentials)) {
+                        this.props.history.push('/home');
+                    }
                 }}>
+                    <label className="input">Name<input className="input-form" type="text" onChange={e => this.setState({name: e.target.value})}></input></label>
+                    <label className="input">Age<input className="input-form" type="text" onChange={e => this.setState({age: e.target.value})}></input></label>
                     <label className="input">Username<input className="input-form" type="text" onChange={e => this.setState({username: e.target.value})}></input></label>
                     <label className="input">Password<input className="input-form" type="password" onChange={e => this.setState({password: e.target.value})}></input></label>
-                    <label className="input">Password Confirmation<input className="input-form" type="password"></input></label>
-                    <button type="submit" value="Enter" onClick={e => e.preventDefault()}>Enter</button>
+                    <label className="input">Password Confirmation<input className="input-form" type="password" onChange={e => this.setState({passwordConfirmation: e.target.value})}></input></label>
+                    <button type="submit" value="Enter">Enter</button> 
                     <button onClick={(e) => {
                         this.setState({clicked: 'login'});
                     }}>Already a member?</button>

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import LogInSignUp from './components/LogInSignUp';
 import HomePage from './containers/HomePage';
-import { Route } from 'react-router-dom'; 
+import { Route, Redirect } from 'react-router-dom'; 
 import DrinkCardsContainer from './containers/DrinkCardsContainer';
 import UserInfo from './components/UserInfo';
 import NavBar from './containers/NavBar';
@@ -33,16 +33,48 @@ class App extends React.Component {
     return this.state.isLoggedIn;
   }
 
+   setUser = (foundUser) => {
+       this.setState({
+         currentUser: foundUser[0],
+         isLoggedIn: true
+       })
+   }
+
   
   fetchUser = (username) => {
     fetch('http://localhost:3000/users')
       .then(resp => resp.json())
       .then(users => {
+              console.log(2)
         let foundUser = users.filter(user => user.username === username)
         if (foundUser) {
           this.setState({currentUser: foundUser[0], isLoggedIn: true})
         }
       })
+    }
+
+    createUser  = (credentials) => {
+      if (credentials.password === credentials.passwordConfirmation) {
+        fetch('http://localhost:3000/users', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            name: credentials.name,
+            username: credentials.username,
+            age: credentials.age,
+            password: credentials.password,
+            bar_cart: [],
+          })
+        })
+          .then(resp => resp.json())
+          .then(user => {
+            this.setState({currentUser: user, isLoggedIn: true});
+            return true;
+          })
+          
+      } else {
+        return false;
+      }
     }
 
       componentDidMount() {
@@ -60,8 +92,15 @@ class App extends React.Component {
      
     return (
       <div className="App"> 
+
+
+      <Route exact path='/' render={(routeProps) => {
+        return <Redirect to = "/login" / >
+        }
+        }
+        />
         <Route exact path='/login' render={(routeProps) => {
-        return <LogInSignUp {...routeProps} login={this.login} signup={this.signup} /> }}
+        return <LogInSignUp {...routeProps} login={this.login} setUser={this.setUser} createUser={this.createUser} /> }}
         />
         
         <Route exact path='/home' render={(routeProps) => {
