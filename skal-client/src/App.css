@@ -58,11 +58,27 @@ body, html {
   margin-bottom: 5%;
 }
 
+/* #home-page {
+  background-image: ('https://static.vinepair.com/wp-content/uploads/2015/09/speakeasybar.jpg');
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+} */
+
+#fizz-video {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
 .nav-bar-button {
   border-style: none;
   border: none;
   display: inline-block;
   outline: none;
+  font-size: 1.25em;
 }
 
 .nav-bar-button:hover {
@@ -70,11 +86,50 @@ body, html {
 }
 
 #nav-bar {
+  text-align: center;
+  padding-top: 4%;
   list-style: none;
-
 }
+
 #nav-bar li {
   display: inline-block;
+}
+
+#search-bar {
+  padding-top: 1%;
+  width: 100%;
+  background: none;
+}
+
+#search-bar-input {
+  width: 20%;
+  height: 30px;
+  text-align: center;
+  background: transparent;
+  /* border-radius: 20px; */
+}
+
+#search-button {
+  color: goldenrod;
+  background: #fff;
+  border: 1px solid goldenrod;
+  font-size: 17px;
+  padding: 7px 12px;
+  padding-left: 20px;
+  font-weight: normal;
+  margin: 6px 0;
+  margin-right: 12px;
+  display: inline-block;
+  text-decoration: none;
+  font-family: 'Open Sans',
+  sans-serif;
+  min-width: 120px;
+}
+
+#drink-cards-container {
+  padding-top: 6%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .drink-card {
@@ -85,6 +140,9 @@ body, html {
 
 .drink-card .drink-card-img {
   visibility: visible;
+  max-width: 400px;
+  max-height: 400px;
+  align-self: flex-end;
 }
 .drink-card .drink-card-name {
   margin: 10px;
@@ -187,3 +245,54 @@ body, html {
   outline: 0;
   border-bottom: 1px;
 }
+
+.input.input-form {
+  flex-grow: 1;
+  padding-left: 20px;
+  font-size: 2em;
+  color: white;
+}
+
+
+.log-in-button {
+  color: goldenrod;
+  background: #fff;
+  border: 1px solid goldenrod;
+  font-size: 17px;
+  padding: 7px 12px;
+  font-weight: normal;
+  margin: 6px 0;
+  margin-right: 12px;
+  display: inline-block;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  min-width: 120px;
+}
+
+.sign-up-button {
+  color: goldenrod;
+  background: #fff;
+  border: 1px solid goldenrod;
+  font-size: 17px;
+  padding: 7px 12px;
+  font-weight: normal;
+  margin: 6px 0;
+  margin-right: 12px;
+  display: inline-block;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  min-width: 120px;
+}
+
+.log-in-button:hover,
+.log-in-button:active {
+  color: #fff;
+  background: maroon;
+}
+.sign-up-button:hover,
+.sign-up-button:active {
+  color: #fff;
+  background: maroon;
+}
+
+
