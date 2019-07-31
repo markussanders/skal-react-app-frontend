@@ -12,13 +12,11 @@ class DrinkCardsContainer extends React.Component {
   
   renderDrinkSpecs = drink => {
     this.setState({clickedCocktail: drink})
-    console.log('DRINK CARDS CONTAINER =', drink);
   }
 
   renderDrinkCards() {
     this.setState({clickedCocktail: false})
   }
-
 
   render() {
     return(

@@ -1,8 +1,6 @@
 import React from 'react'
+import { Route, Link } from 'react-router-dom'; 
 import '../App.css';
-import UserInfo from '../components/UserInfo'
-import Favorites from './Favorites'
-import DrinkCardsContainer from './DrinkCardsContainer'
 
 class NavBar extends React.Component {
   constructor(props){
@@ -14,14 +12,11 @@ class NavBar extends React.Component {
       <div>
         <nav>
           <ul id = "nav-bar" >
-            <li> <button href='#' className="nav-bar-button" onClick={this.props.handleHomePage}> Home </button>
+            <li> <Link to="/home"><button className="nav-bar-button"> Home </button></Link>
             </li>
-            <li>
-            <button href='#' className="nav-bar-button" onClick={this.props.handleProfileClick}> Profile </button>
+           <li> <Link to="/profile"><button className="nav-bar-button"> Profile </button></Link>
             </li>
-            <li> <button href='#' className="nav-bar-button" onClick={this.props.handleFavoritesClick}> Favorites </button>
-            </li>
-            <li> <button href='#' className="nav-bar-button" onClick={this.props.handleCocktailsClick}> Cocktails </button>
+            <li> <Link to="/cocktails"><button className="nav-bar-button"> Cocktails </button></Link>
             </li>
           </ul>
         </nav>

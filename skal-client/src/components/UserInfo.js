@@ -32,7 +32,7 @@ class UserInfo extends React.Component {
               </div>
           </div>
           <div>
-            <Favorites/>
+            {/* <Favorites /> */}
           </div>
       </div>
     )

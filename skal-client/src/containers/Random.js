@@ -13,13 +13,12 @@ class Random extends React.Component {
 
     renderDrinkSpecs = drink => {
         this.setState({clickedCocktail: drink})
-        console.log('specific drink =', drink)
     }
 
     createDrinkCards = () => {
         if (!this.state.clickedCocktail){
             return this.props.drinks.map(drink => {
-                return <DrinkCard drink={drink} renderDrinkSpecs={this.renderDrinkSpecs} />
+                return <DrinkCard drink={drink} key={drink.id} renderDrinkSpecs={this.renderDrinkSpecs} />
             });
         }
     }
@@ -29,7 +28,7 @@ class Random extends React.Component {
             <div>
                 {this.state.clickedCocktail ?
                     <div>
-                        <DrinkSpecs drink={this.state.clickedCocktail} />
+                        <DrinkSpecs drink={this.state.clickedCocktail} key={this.state.clickedCocktail.id} />
                     </div>
                 :
                     <div id="random-drinks-container">

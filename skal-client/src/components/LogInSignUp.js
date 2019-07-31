@@ -14,8 +14,9 @@ class LogInSignUp extends React.Component {
 
 
     renderLogInForm = () =>  {
+        
         return (
-            <div>
+            < div id = "login-signup-container" >
                 <h2 id="welcome-back">Welcome Back</h2>
                 <form 
                     id="login-signup-form" 
@@ -25,11 +26,13 @@ class LogInSignUp extends React.Component {
                             username: this.state.username,
                             password: this.state.password,
                         }
-                        this.props.login(credentials);
+                        if (this.props.login(credentials)) {
+                            this.props.history.push('/home');
+                        }
                     }}
                     >
-                    <label>Username<input className="input-form" onChange={e => this.setState({username: e.target.value})}></input></label>
-                    <label>Password<input className="input-form" type="password" onChange={e => this.setState({password: e.target.value})}></input></label>
+                    <label className="input">Username<input className="input-form" type="text" onChange={e => this.setState({username: e.target.value})}></input></label>
+                    <label className="input">Password<input className="input-form" type="password" onChange={e => this.setState({password: e.target.value})}></input></label>
                     <button type="submit" value="Enter">Enter</button>
                      <button onClick={(e) => {
                         this.setState({clicked: 'signup'});
@@ -41,7 +44,7 @@ class LogInSignUp extends React.Component {
 
     renderSignUpForm() {
         return (
-            <div>
+            <div id="login-signup-container">
                 <h2 id="welcome-back">Welcome</h2>
                 <form id="login-signup-form" onSubmit={(e) => {
                     const credentials = {
@@ -50,9 +53,9 @@ class LogInSignUp extends React.Component {
                     }
                     this.props.signup(credentials);
                 }}>
-                    <label>Username<input className="input-form" onChange={e => this.setState({username: e.target.value})}></input></label>
-                    <label>Password<input className="input-form" type="password" onChange={e => this.setState({password: e.target.value})}></input></label>
-                    <label>Password Confirmation<input className="input-form" type="password"></input></label>
+                    <label className="input">Username<input className="input-form" type="text" onChange={e => this.setState({username: e.target.value})}></input></label>
+                    <label className="input">Password<input className="input-form" type="password" onChange={e => this.setState({password: e.target.value})}></input></label>
+                    <label className="input">Password Confirmation<input className="input-form" type="password"></input></label>
                     <button type="submit" value="Enter" onClick={e => e.preventDefault()}>Enter</button>
                     <button onClick={(e) => {
                         this.setState({clicked: 'login'});
@@ -71,7 +74,7 @@ class LogInSignUp extends React.Component {
                          this.renderLogInForm();
                          this.setState({clicked: 'login'})
                     }}>Login</button>
-                     / 
+                    <span id="divider"> / </span>
                     <button id="signup-button" onClick={() => {
                         this.renderSignUpForm();
                         this.setState({clicked: 'signup'})

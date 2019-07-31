@@ -32,20 +32,30 @@
   }
 }
 
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
 
 #landing-page-main-div {
+  background-color: black;
+  position: absolute;
+  background: url('https://media.timeout.com/images/100898539/image.jpg') no-repeat center fixed;
+  background-size: cover;
   display: flex;
   align-items: center;
-  background-image: url('https://media.timeout.com/images/100898539/image.jpg');
   width: 100%;
-  height: 1280px;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 #landing-page-logo-container {
   bottom: 0;
   flex: 1;
   justify-content: flex-end;
-  margin-bottom: 36;
+  margin-bottom: 5%;
 }
 
 .nav-bar-button {
@@ -114,4 +124,66 @@
 #random-drinks-container img {
   max-width: 400px;
   max-height: 400px;
+}
+
+#Logo {
+  color: white;
+  font-size: 5em;
+  margin-bottom: 0px;
+}
+
+#log-in-button {
+  border: none;
+  background: none;
+  color: white;
+  font-size: 2em;
+}
+
+#log-in-button:hover {
+  color:goldenrod;
+}
+
+#signup-button {
+  border: none;
+  background: none;
+  color: white;
+  font-size: 2em;
+}
+
+#signup-button:hover {
+  color: goldenrod;
+}
+
+#divider {
+  color: white;
+  font-size: 2em;
+}
+
+#welcome-back {
+  color: white;
+  font-size: 3em;
+}
+
+#login-signup-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  margin-bottom: 6%;
+  
+}
+
+.input {
+  color: white;
+  font-size: 2em;
+  margin-right: .5em;
+}
+
+#landing-page-main-div input {
+  background: none;
+  background-color: transparent;
+  border: none;
+  font-size: .5em;
+  outline: 0;
+  border-bottom: 1px;
 }

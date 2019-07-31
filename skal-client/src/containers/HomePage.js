@@ -9,103 +9,105 @@ import UserInfo from '../components/UserInfo';
 
 
 class HomePage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            searchedDrinks: [],
-            clickedCocktails: false,
-            randomDrinks: [],
-            specificDrink: false,
-            clickedProfile: false
-        };
-    }
+        constructor(props) {
+            super(props);
+            this.state = {
+                searchedDrinks: [],
+                randomDrinks: [],
+                drinks: props.drinks
+            
+            };
+        }
 
-    componentDidMount() {
-        this.generateRandomDrinks();
-    }
+        componentDidMount() {
+            this.generateRandomDrinks();
+        }
 
 
-    handleProfileClick = () => {
-        this.setState({clickedProfile: true});
-        this.setState({clickedCocktails: false});
-        this.setState({searchedDrinks: []})
-        console.log('in profile');
-        return <UserInfo drinks={this.props.drinks}/>
+        
 
-    }
+        handleSearch = target => {
+            let term = target.value;
+            target.value = '';
+            let searchedDrinks = this.state.drinks.filter(drink => drink.name.toLowerCase() === term.toLowerCase())
 
-    handleCocktailsClick = () =>  {
-        this.setState({clickedCocktails: true, specificDrink: false});
-        this.setState({searchedDrinks: []})
-        return <DrinkCardsContainer drinks={this.props.drinks} />;
-    }
+            this.setState({
+                clickedCocktails: false,
+                specificDrink: false,
+                searchedDrinks: searchedDrinks,
+            });
+        }
 
-    handleFavoritesClick = () => {
-        console.log('in favorites')
+        // handleHomePage = () => {
+        //     // this.setState({
+        //     //     clickedCocktails: false,
+        //     //     clickedProfile: false, 
+        //     //     searchedDrinks: []
+        //     // });
 
-    }
+        //     this.generateRandomDrinks()
+        //     this.renderDrinkCardsContainer()
+        // }
 
-    handleSearch = target => {
-       let term = target.value;
-       target.value = '';
-       let searchedDrinks = this.props.drinks.filter(drink => drink.name.toLowerCase() === term.toLowerCase())
-       this.setState({ searchedDrinks });
-       this.setState({clickedCocktails: false, specificDrink: false});
-    }
-
-    handleHomePage = () => {
-      this.setState({clickedCocktails: false});
-      this.setState({searchedDrinks: []})
-      this.setState({clickedProfile: false});
-      this.generateRandomDrinks()
-      this.renderDrinkCardsContainer()
-    }
-
-    generateRandomDrinks = () => {
-        const arr = this.props.drinks;
-        let randomElements = [];
-        for (let i = 0; i < 3; i++) {
-            let randomElement = arr[Math.floor(Math.random() * arr.length)];
-            if (!randomElements.includes(randomElement)) {
-                randomElements.push(randomElement);
-            } else if (randomElements.includes(randomElement)) {
-                i--;
+        generateRandomDrinks = () => {
+            const arr = this.state.drinks;
+            let randomElements = [];
+            for (let i = 0; i < 3; i++) {
+                let randomElement = arr[Math.floor(Math.random() * arr.length)];
+                if (!randomElements.includes(randomElement)) {
+                    randomElements.push(randomElement);
+                } else if (randomElements.includes(randomElement)) {
+                    i--;
+                }
             }
+            this.setState({
+                randomDrinks: randomElements
+            })
         }
-        this.setState({randomDrinks: randomElements})
-    }
-    
-    renderDrinkSpecs = drink => {
-        this.setState({specificDrink: drink});
-    }
+
+        renderDrinkSpecs = drink => {
+            this.setState({
+                specificDrink: drink
+            });
+        }
 
 
-    renderDrinkCardsContainer = () => {
-        let clickedCocktails = this.state.clickedCocktails;
-        let searchedDrinks = this.state.searchedDrinks;
-        if (clickedCocktails) {
-            return <DrinkCardsContainer drinks={this.props.drinks} />;
-        } else if (searchedDrinks.length > 0) {
-            return <DrinkCardsContainer drinks={this.state.searchedDrinks} />;
-        } else if (this.state.specificDrink) {
-            return <DrinkSpecs drink={this.state.specificDrink} renderDrinkSpecs={this.renderDrinkSpecs} />
-        } else if (this.state.clickedProfile === true) {
-            return <UserInfo />;
-        }
-        return <Random drinks = {this.state.randomDrinks} />;
-    }
+        // renderDrinkCardsContainer = () => {
+        //     let clickedCocktails = this.state.clickedCocktails;
+        //     let searchedDrinks = this.state.searchedDrinks;
+        //     if (clickedCocktails) {
+        //         return <DrinkCardsContainer drinks = {
+        //             this.props.drinks
+        //         }
+        //         />;
+        //     } else if (searchedDrinks.length > 0) {
+        //         return <DrinkCardsContainer drinks = {
+        //             this.state.searchedDrinks
+        //         }
+        //         />;
+        //     } else if (this.state.specificDrink) {
+        //         return <DrinkSpecs drink = {
+        //             this.state.specificDrink
+        //         }
+        //         renderDrinkSpecs = {
+        //             this.renderDrinkSpecs
+        //         }
+        //         />
+        //     } else if (this.state.clickedProfile === true) {
+        //         return <UserInfo / > ;
+        //     }
+        //     return <Random drinks = {
+        //         this.state.randomDrinks
+        //     }
+        //     />;
+        // }
 
     render() {
         return (
            <div>
               <div>
-                <NavBar handleProfileClick={this.handleProfileClick} handleFavoritesClick={this.handleFavoritesClick} handleCocktailsClick={this.handleCocktailsClick} handleHomePage={this.handleHomePage}/>
-              </div>
-              <div>
-                <Search handleSearch={this.handleSearch} drinks={this.props.drinks}/>
-              </div>
-              <div>
-                {this.renderDrinkCardsContainer()}
+                <Search handleSearch={this.handleSearch} drinks={this.state.drinks}/>
+                <DrinkCardsContainer  drinks={this.state.randomDrinks} />
               </div>
            </div>
         )
