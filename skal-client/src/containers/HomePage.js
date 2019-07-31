@@ -18,7 +18,7 @@ class HomePage extends React.Component {
                 searchedDrinks: [],
                 randomDrinks: [],
                 drinks: props.drinks
-            
+
             };
         }
 
@@ -27,7 +27,7 @@ class HomePage extends React.Component {
         }
 
 
-        
+
 
         handleSearch = target => {
             let term = target.value;
@@ -44,7 +44,7 @@ class HomePage extends React.Component {
         // handleHomePage = () => {
         //     // this.setState({
         //     //     clickedCocktails: false,
-        //     //     clickedProfile: false, 
+        //     //     clickedProfile: false,
         //     //     searchedDrinks: []
         //     // });
 
