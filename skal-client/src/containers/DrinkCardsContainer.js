@@ -17,11 +17,27 @@ class DrinkCardsContainer extends React.Component {
   renderDrinkCards() {
     this.setState({clickedCocktail: false})
   }
+  renderFavorites(){
+    console.log('asfd', this.props)
+    return this.props.drinks.map(drink => {
+    return < DrinkCard renderDrinkSpecs = {
+          this.renderDrinkSpecs
+        }
+        drink = {
+          drink
+        }
+        key = {
+          drink.id
+        }
+        />
+      })
+  }
 
   render() {
+    console.log('hello')
     return(
       <div id="drink-cards-container">
-      {this.state.clickedCocktail ? <DrinkSpecs drink={this.state.clickedCocktail}/> : this.props.drinks.map(drink => <DrinkCard renderDrinkSpecs={this.renderDrinkSpecs} drink={drink} key={drink.id} />)}
+      {this.state.clickedCocktail ? <DrinkSpecs drink={this.state.clickedCocktail}/> : this.renderFavorites()}
       </div>
     )
   }
