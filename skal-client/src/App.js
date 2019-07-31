@@ -89,7 +89,7 @@ class App extends React.Component {
 
   render() {
     const { drinks, currentUser } = this.state 
-     
+     console.log(this.state.currentUser)
     return (
       <div className="App"> 
 
@@ -126,7 +126,7 @@ class App extends React.Component {
           return (
             <div>
               <NavBar {...routeProps} />
-              <UserInfo {...routeProps} currentUser={currentUser} />
+              <UserInfo {...routeProps} currentUser={currentUser} drinks={this.state.drinks} />
             </div>
           )
         }} />

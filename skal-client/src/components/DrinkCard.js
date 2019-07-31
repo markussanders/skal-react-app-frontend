@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const DrinkCard = props =>  {
     const {drink} = props;
+    console.log(props)
     return (
         <div className="drink-card" onClick={() => {
             props.renderDrinkSpecs(drink);
