@@ -88,6 +88,8 @@ body, html {
 }
 
 #nav-bar {
+  position: sticky;
+  top: 0;
   text-align: center;
   padding-top: 4%;
   list-style: none;
@@ -131,6 +133,9 @@ li {
   font-family: 'Open Sans',
   sans-serif;
   min-width: 120px;
+}
+#search-button:hover {
+  background: maroon;
 }
 
 #drink-cards-container {
@@ -371,4 +376,15 @@ li {
 
 #favorites-cont {
   width: 40%;
+}
+
+#drink-cards-container {
+  display: flex;
+  flex-wrap:  wrap;
+  justify-content: center;
+}
+
+.drink-card {
+  padding: 1em;
+  object-fit: fill;
 }
