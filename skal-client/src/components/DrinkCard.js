@@ -2,7 +2,6 @@ import React from 'react';
 
 const DrinkCard = props =>  {
     const {drink} = props;
-    console.log(props)
     return (
         <div className="drink-card" onClick={() => {
             props.renderDrinkSpecs(drink);

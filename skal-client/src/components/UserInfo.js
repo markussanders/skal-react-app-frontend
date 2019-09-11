@@ -7,15 +7,16 @@ class UserInfo extends React.Component {
     super(props)
     this.state = {
       favorites: [],
+      currentUser: this.props.currentUser,
     }
   }
   componentDidMount() {
-    fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
+    console.log('this.state.currentUser.id =', this.state.currentUser.id);
+    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`)
       .then(resp => resp.json())
       .then(user => {
         let drinkIds = user.favorites.map(fav => fav.drink_id);
         const faveDrinks = this.props.drinks.filter( drink => drinkIds.includes(drink.id))
-        console.log('favedrink =', faveDrinks)
         this.setState({favorites: faveDrinks});
       })
   }
@@ -25,7 +26,6 @@ class UserInfo extends React.Component {
   };
 
   render() {
-    console.log(this.state.favorites)
     return(
       <div>
           <div>
@@ -41,8 +41,13 @@ class UserInfo extends React.Component {
               </div>
           </div>
           < div >
-             <DrinkCardsContainer drinks={this.state.favorites}/>
-            {/* <Favorites /> */}
+          {this.state.favorites ? 
+          <div>
+            <h2 id="favorite-drinks-message">Your favorite drinks: </h2>
+            <DrinkCardsContainer drinks={this.state.favorites}/>
+          </div>
+          : <h2 id="no-favorites-message">Your favorite drinks will appear here</h2>
+          }
           </div>
       </div>
     )

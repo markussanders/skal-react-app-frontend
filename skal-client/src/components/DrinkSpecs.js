@@ -4,7 +4,6 @@ import Comment from './Comment';
 class DrinkSpecs extends React.Component {
     constructor(props) {
         super(props);
-        console.log('props =', props);
         this.state = {
             drinkComments: [],
         }
@@ -16,12 +15,10 @@ class DrinkSpecs extends React.Component {
     }
 
     fetchComments = () => {
-        console.log("fetching")
         fetch('http://localhost:3000/comments')
             .then(resp => resp.json())
             .then(comments => {
                 const drinkComments = comments.filter(comment => comment.drink_id === this.props.drinkid )
-                console.log('drink comments = ', drinkComments)
                 this.setState({drinkComments: drinkComments});
             })
     }
@@ -36,7 +33,6 @@ class DrinkSpecs extends React.Component {
     
     render () {
         const {drink} = this.props;
-        console.log(drink);
         return (
             <div id="drink-spec-page">
                 <img id="drink-spec-img" src={drink.image_url} alt={drink.name}/>
@@ -53,7 +49,6 @@ class DrinkSpecs extends React.Component {
                 <h5 id="favorites-cont">Favorited by: <span id="favorited-count">{drink.favorited_count}</span></h5>
                 < br / >
                 <div id="drink-spec-comments-cont"> Comments: 
-                {console.log(this.state)}
                     {(this.state.drinkComments.map(comment => <Comment key={comment.id} comment={comment} />) || " None yet! Be the first!" )}
                 </div>
                 </div>

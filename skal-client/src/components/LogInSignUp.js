@@ -31,7 +31,6 @@ class LogInSignUp extends React.Component {
                         fetch('http://localhost:3000/users')
                             .then(resp => resp.json())
                             .then(users => {
-                                console.log(2)
                                 let foundUser = users.filter(user => user.username === this.state.username)
                                 if (foundUser) {
                                     this.props.setUser(foundUser)
@@ -75,7 +74,6 @@ class LogInSignUp extends React.Component {
                         age: this.state.age,
                         name: this.state.name,
                     }
-                    console.log(this.state);
                     if (this.props.createUser(credentials)) {
                         this.props.history.push('/home');
                     }

@@ -9,7 +9,6 @@ import DrinkCardsContainer from './DrinkCardsContainer';
 class HomePage extends React.Component {
         constructor(props) {
             super(props);
-            console.log(props)
             this.state = {
                 searchedDrinks: [],
                 randomDrinks: [],

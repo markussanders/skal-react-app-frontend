@@ -34,7 +34,6 @@ handleSubmitInfo=()=>{
 }
 
    render() {
-     console.log(this.state.favorites)
      return(
        <div>
 

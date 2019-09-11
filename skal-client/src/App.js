@@ -16,7 +16,7 @@ class App extends React.Component {
       drinks: [],
       username: '',
       password: '',
-      currentUser: {} || localStorage.getItem('user'),
+      currentUser: localStorage.getItem('user'),
       isLoggedIn: false,
     }
   }
@@ -35,12 +35,16 @@ class App extends React.Component {
   }
 
    setUser = (foundUser) => {
-      this.setState({
-        currentUser: foundUser[0],
-        isLoggedIn: true
-      });
-      localStorage.setItem('user', foundUser);
-      console.log('CURRENT USER = ', this.state.currentUser);
+
+     if (foundUser) {
+       this.setState({
+         currentUser: foundUser[0],
+         isLoggedIn: true
+        });
+        localStorage.setItem('user', foundUser[0]) 
+      } else {
+        this.props.history.push('/login');
+      }
    }
 
 
@@ -48,7 +52,6 @@ class App extends React.Component {
     fetch('http://localhost:3000/users')
       .then(resp => resp.json())
       .then(users => {
-              console.log(2)
         let foundUser = users.filter(user => user.username === username)
         if (foundUser) {
           this.setState({currentUser: foundUser[0], isLoggedIn: true})
@@ -89,8 +92,7 @@ class App extends React.Component {
       }
 
   render() {
-    const { drinks, currentUser } = this.state
-     console.log(this.state.currentUser)
+    const { drinks, currentUser } = this.state;
     return (
       <div className="App">
 
@@ -103,7 +105,6 @@ class App extends React.Component {
         />
 
         <Route exact path='/home' render={(routeProps) => {
-          console.log(this.state.currentUser)
           return (
             <div id="home-page">
               <NavBar {...routeProps} />
@@ -125,7 +126,7 @@ class App extends React.Component {
           return (
             <div>
               <NavBar {...routeProps} drinks={this.state.drinks}/>
-              <UserInfo {...routeProps} currentUser={currentUser} drinks={this.state.drinks} />
+              <UserInfo {...routeProps} currentUser={this.state.currentUser} drinks={this.state.drinks} />
             </div>
           )
         }} />
@@ -141,7 +142,6 @@ class App extends React.Component {
 
         <Route exact path='/drinks/:id' render={(routeProps) => {
           const foundDrink = this.state.drinks.find(drink => drink.id === routeProps.match.params.id);
-          console.log(foundDrink)
           return (
             <div>
               <NavBar {...routeProps} drinks={this.state.drinks}/>
