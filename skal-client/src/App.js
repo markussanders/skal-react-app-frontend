@@ -134,8 +134,8 @@ class App extends React.Component {
         <Route exact path='/edit-profile' render={(routeProps) => {
           return (
             <div>
-              <NavBar {...routeProps} drinks={this.state.drinks}/>
-              <EditProfile currentUser={currentUser}/>
+              <NavBar {...routeProps} drinks={this.state.drinks}  />
+              <EditProfile {...routeProps} currentUser={currentUser} setUser={this.setUser}/>
             </div>
           )
         }} />

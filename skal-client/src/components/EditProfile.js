@@ -1,6 +1,3 @@
-
-
-
  import React from 'react'
  import Search from '../containers/Search';
  import Favorites from '../containers/Favorites'
