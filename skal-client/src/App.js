@@ -16,7 +16,7 @@ class App extends React.Component {
       drinks: [],
       username: '',
       password: '',
-      currentUser: {},
+      currentUser: {} || localStorage.getItem('user'),
       isLoggedIn: false,
     }
   }
@@ -35,10 +35,12 @@ class App extends React.Component {
   }
 
    setUser = (foundUser) => {
-       this.setState({
-         currentUser: foundUser[0],
-         isLoggedIn: true
-       })
+      this.setState({
+        currentUser: foundUser[0],
+        isLoggedIn: true
+      });
+      localStorage.setItem('user', foundUser);
+      console.log('CURRENT USER = ', this.state.currentUser);
    }
 
 
@@ -86,8 +88,6 @@ class App extends React.Component {
         });
       }
 
-
-
   render() {
     const { drinks, currentUser } = this.state
      console.log(this.state.currentUser)
@@ -121,8 +121,6 @@ class App extends React.Component {
           )
         }} />
 
-
-
         <Route exact path='/profile' render={(routeProps) => {
           return (
             <div>
@@ -150,7 +148,6 @@ class App extends React.Component {
               <DrinkSpecs drink={foundDrink} />
             </div>
           )
-
         }} />
 
       </div>

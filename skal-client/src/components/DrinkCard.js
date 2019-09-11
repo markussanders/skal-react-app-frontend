@@ -1,7 +1,4 @@
 import React from 'react';
-import DrinkSpecs from './DrinkSpecs';
-import { Link } from 'react-router-dom'; 
-
 
 const DrinkCard = props =>  {
     const {drink} = props;
@@ -11,8 +8,10 @@ const DrinkCard = props =>  {
             props.renderDrinkSpecs(drink);
         }} >
             <img className="drink-card-img" src={drink.image_url} alt={drink.name}/>
-            <h4 className="drink-card-name">{drink.name}</h4>
-            <p className="drink-card-desc">{drink.description}</p>
+            <div className="drink-card-info">
+                <h4 className="drink-card-name">{drink.name}</h4>
+                <p className="drink-card-desc">{drink.description}</p>
+            </div>
         </div>
     )
 

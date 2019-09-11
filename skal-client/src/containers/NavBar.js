@@ -5,7 +5,8 @@ import '../App.css';
 class NavBar extends React.Component {
 
   render() {
-    return(
+
+    return (
 
       <div>
         <nav>
@@ -19,6 +20,7 @@ class NavBar extends React.Component {
           </ul>
         </nav>
       </div>
+      
     )
   }
 }
