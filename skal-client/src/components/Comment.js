@@ -7,7 +7,6 @@ class Comment extends React.Component {
         super(props);
     }
     render() {
-        console.log("COMMENTS")
         return (
         <div>
             <h2>HERREEEE</h2>
