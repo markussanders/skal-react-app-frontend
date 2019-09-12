@@ -32,7 +32,7 @@ handleSubmitInfo=()=>{
 
    render() {
      return(
-       <div>
+       <div id="edit-profile-content">
            <div>
             <h2 id="changes-prompt">Please submit any changes.</h2>
            <form id="edit-profile-form" >
