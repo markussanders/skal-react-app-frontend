@@ -14,6 +14,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       drinks: [],
+      searchedDrinks: [],
+      term: '',
       username: '',
       password: '',
       currentUser: localStorage.getItem('user'),
@@ -91,13 +93,19 @@ class App extends React.Component {
         });
       }
 
+      handleSearch = (results, term)=> {
+        this.setState({
+          searchedDrinks: results,
+          term: term
+        });
+      }
+
   render() {
     const { drinks, currentUser } = this.state;
     return (
       <div className="App">
 
-
-      <Route exact path='/' render={(routeProps) => <Redirect to = "/login" / >}/>
+      <Route exact path='/' render={(routeProps) => <Redirect to = "/login" />}/>
         <Route exact path='/login' render={(routeProps) => {
         return (
           <LogInSignUp {...routeProps} login={this.login} setUser={this.setUser} createUser={this.createUser} />
@@ -108,7 +116,7 @@ class App extends React.Component {
           return (
             <div id="home-page">
               <NavBar {...routeProps} />
-              <HomePage {...routeProps} drinks={drinks} currentUser={currentUser} />
+              <HomePage {...routeProps} drinks={drinks} handleSearch={this.handleSearch} currentUser={currentUser} />
             </div>
           ) }}
         />
@@ -118,6 +126,15 @@ class App extends React.Component {
             <div>
               <NavBar {...routeProps} drinks={this.state.drinks}/>
               <DrinkCardsContainer {...routeProps} drinks={drinks} />
+            </div>
+          )
+        }} />
+
+        <Route exact path={`/cocktails/${this.state.term}`} render={(routeProps) => {
+          return (
+            <div>
+              <NavBar {...routeProps} drinks={this.state.drinks}/>
+              <DrinkCardsContainer {...routeProps} drinks={this.state.searchedDrinks} />
             </div>
           )
         }} />
