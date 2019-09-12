@@ -5,36 +5,6 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 body, html {
   height: 100%;
   margin: 0;
@@ -387,4 +357,49 @@ li {
 .drink-card {
   padding: 1em;
   object-fit: fill;
+}
+
+#edit-profile-page {
+  font-family: 'Alegreya Sans SC', sans-serif;
+  background-color: black;
+  position: absolute;
+  background: url('https://newenglandliving.tv/wp-content/uploads/2018/12/The-Broken-Dram_interior3-1050x700.jpg') no-repeat center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+#changes-prompt {
+  font-size: 2em;
+}
+
+#edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: left;
+}
+
+.edit-input-label {
+  position: relative;
+  opacity: 1;
+  color: whitesmoke;
+  font-size: 2em;
+  margin-right: .5em;
+}
+
+.edit-input {
+  flex-grow: 1;
+  width: 5em;
+  padding-left: 20px;
+  color: goldenrod;
+  font-size: 1em;
+  border: none;
+  border-bottom: 2px solid whitesmoke;
+  background-color: transparent;
+  outline: 0;
 }

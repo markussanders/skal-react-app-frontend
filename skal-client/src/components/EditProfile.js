@@ -33,15 +33,14 @@ handleSubmitInfo=()=>{
    render() {
      return(
        <div>
-
            <div>
-             Would you like to edit your User Information? Please submit any changes.
-           <form name="User Information" >
-               <label >Name<input className="input-form" type="text" onChange={e => this.setState({name: e.target.value})}></input></label>
-               <label >Age<input className="input-form" type="text" onChange={e => this.setState({age: e.target.value})} ></input> </label>
-               <label >Username<input className="input-form" type="text" onChange={e => this.setState({username: e.target.value})}></input></label>
-               <label >Password<input className="input-form" type="password" onChange={e => this.setState({password: e.target.value})}></input></label>
-               <label >Password Confirmation<input className="input-form" type="password" onChange={e => this.setState({passwordConfirmation: e.target.value})}></input></label>
+            <h2 id="changes-prompt">Please submit any changes.</h2>
+           <form id="edit-profile-form" >
+               <label className="edit-input-label">Name<input className="edit-input" type="text" onChange={e => this.setState({name: e.target.value})}></input></label>
+               <label className="edit-input-label">Age<input className="edit-input" type="text" onChange={e => this.setState({age: e.target.value})} ></input> </label>
+               <label className="edit-input-label">Username<input className="edit-input" type="text" onChange={e => this.setState({username: e.target.value})}></input></label>
+               <label className="edit-input-label">Password<input className="edit-input" type="password" onChange={e => this.setState({password: e.target.value})}></input></label>
+               <label className="edit-input-label">Password Confirmation<input className="edit-input" type="password" onChange={e => this.setState({passwordConfirmation: e.target.value})}></input></label>
                <button type="submit" value="Enter" onClick={() => this.handleSubmitInfo()}>Submit</button>
            </form>
            </div>
