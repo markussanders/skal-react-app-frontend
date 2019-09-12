@@ -10,6 +10,7 @@ class UserInfo extends React.Component {
       currentUser: this.props.currentUser,
     }
   }
+
   componentDidMount() {
     console.log('this.state.currentUser.id =', this.state.currentUser.id);
     fetch(`http://localhost:3000/users/${this.state.currentUser.id}`)
@@ -21,9 +22,6 @@ class UserInfo extends React.Component {
       })
   }
 
-  fetchFavorites = () => {
-
-  };
 
   render() {
     return(
@@ -41,7 +39,7 @@ class UserInfo extends React.Component {
               </div>
           </div>
           < div >
-          {this.state.favorites ? 
+          {this.state.favorites ?
           <div>
             <h2 id="favorite-drinks-message">Your favorite drinks: </h2>
             <DrinkCardsContainer drinks={this.state.favorites}/>

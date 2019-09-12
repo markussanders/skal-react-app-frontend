@@ -43,7 +43,7 @@ class App extends React.Component {
          currentUser: foundUser[0],
          isLoggedIn: true
         });
-        localStorage.setItem('user', foundUser[0]) 
+        localStorage.setItem('user', foundUser[0])
       } else {
         this.props.history.push('/login');
       }
@@ -170,7 +170,7 @@ class App extends React.Component {
           return (
             <div>
               <NavBar {...routeProps} drinks={this.state.drinks}/>
-              {this.state.foundDrink ? <DrinkSpecs  {...routeProps} drink={this.state.foundDrink} /> : this.retrieveDrink(routeProps.match.params.id)}
+              {this.state.foundDrink ? <DrinkSpecs  user={this.state.currentUser}{...routeProps} drink={this.state.foundDrink} /> : this.retrieveDrink(routeProps.match.params.id)}
             </div>
           )
         }} />
