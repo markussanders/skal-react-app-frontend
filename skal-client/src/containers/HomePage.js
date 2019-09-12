@@ -11,20 +11,21 @@ class HomePage extends React.Component {
             super(props);
             this.state = {
                 searchedDrinks: [],
-                randomDrinks: [],
+                randomDrinks: this.generateRandomDrinks(),
                 drinks: props.drinks
             };
         }
 
-        componentDidMount() {
-            this.generateRandomDrinks();
-        }
+        // componentDidMount() {
+        //     this.generateRandomDrinks();
+        // }
 
         generateRandomDrinks = () => {
-            let randomElements = shuffle(this.state.drinks).slice(0, 3)
-            this.setState({
-                randomDrinks: randomElements
-            })
+            // let randomElements = shuffle(this.state.drinks).slice(0, 3)
+            // this.setState({
+            //     randomDrinks: randomElements
+            // })
+            return shuffle(this.props.drinks).slice(0, 3);
         }
 
         renderDrinkSpecs = drink => {
@@ -39,13 +40,12 @@ class HomePage extends React.Component {
         }
 
     render() {
-        console.log('this.state.searchedDrinks', this.state.searchedDrinks);
-        console.log('THIS.PROPS in homepage', this.props)
+        let randomDrinks = this.state.randomDrinks;
         return (
            <div>
               <div>
                 <Search history={this.props.history} handleSearch={this.handleSearch} drinks={this.state.drinks} currentUser={this.props.currentUser} />
-                <DrinkCardsContainer drinks={this.state.randomDrinks} />
+                <DrinkCardsContainer drinks={randomDrinks} history={this.props.history} />
               </div>
            </div>
         )
