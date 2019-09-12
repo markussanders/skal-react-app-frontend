@@ -100,6 +100,14 @@ class App extends React.Component {
         });
       }
 
+      retrieveDrink = id => {
+        fetch('http://localhost:3000/drinks')
+          .then(resp => resp.json())
+          .then(drinks => {
+            this.setState({foundDrink: drinks.find(drink => drink.id.toString() === id)})
+          });
+      }
+
   render() {
     const { drinks, currentUser } = this.state;
     return (
@@ -158,11 +166,11 @@ class App extends React.Component {
         }} />
 
         <Route exact path='/drinks/:id' render={(routeProps) => {
-          const foundDrink = this.state.drinks.find(drink => drink.id === routeProps.match.params.id);
+          console.log('state=', this.state);
           return (
             <div>
               <NavBar {...routeProps} drinks={this.state.drinks}/>
-              <DrinkSpecs drink={foundDrink} />
+              {this.state.foundDrink ? <DrinkSpecs  {...routeProps} drink={this.state.foundDrink} /> : this.retrieveDrink(routeProps.match.params.id)}
             </div>
           )
         }} />
