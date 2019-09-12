@@ -20,18 +20,6 @@ class HomePage extends React.Component {
             this.generateRandomDrinks();
         }
 
-        handleSearch = target => {
-            let term = target.value;
-            target.value = '';
-            let searchedDrinks = this.state.drinks.filter(drink => drink.name.toLowerCase() === term.toLowerCase())
-
-            this.setState({
-                clickedCocktails: false,
-                specificDrink: false,
-                searchedDrinks: searchedDrinks,
-            });
-        }
-
         generateRandomDrinks = () => {
             let randomElements = shuffle(this.state.drinks).slice(0, 3)
             this.setState({
@@ -45,12 +33,19 @@ class HomePage extends React.Component {
             });
         }
 
+        handleSearch = (results, term) => {
+            this.props.handleSearch(results, term)
+            this.props.history.push(`/cocktails/${term}`);
+        }
+
     render() {
+        console.log('this.state.searchedDrinks', this.state.searchedDrinks);
+        console.log('THIS.PROPS in homepage', this.props)
         return (
            <div>
               <div>
-                <Search handleSearch={this.handleSearch} drinks={this.state.drinks}/>
-                <DrinkCardsContainer  drinks={this.state.randomDrinks} />
+                <Search history={this.props.history} handleSearch={this.handleSearch} drinks={this.state.drinks} currentUser={this.props.currentUser} />
+                <DrinkCardsContainer drinks={this.state.randomDrinks} />
               </div>
            </div>
         )
