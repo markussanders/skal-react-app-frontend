@@ -41,6 +41,13 @@ class DrinkSpecs extends React.Component {
       })
     }
 
+    deleteFavoriteDrink = () => {
+      let favoriteID = 'need to find favorite id'
+      fetch(`http://localhost:3000/favorites/${favoriteID}`, {
+        method: 'DELETE'
+      })
+    }
+
     render () {
         const {drink} = this.props;
         return (
@@ -63,6 +70,7 @@ class DrinkSpecs extends React.Component {
                       {(this.state.drinkComments.map(comment => <Comment key={comment.id} comment={comment} />) || " None yet! Be the first!" )}
                     </div>
                     <button onClick={this.favoriteDrink}> Favorite </button>
+                    <button onClick={this.deleteFavoriteDrink}> Delete Favorite </button>
                 </div>
             </div>
         )
@@ -70,3 +78,11 @@ class DrinkSpecs extends React.Component {
 }
 
 export default DrinkSpecs
+
+//if not a favorite, render favorite button
+//if a favorite, render delete favorite
+//figure out id of favorite to send to delete
+//might need to pass faovirites up from userinfo into app.js
+//so that we can pass it down favorites to drink DrinkSpecs
+//so we can search favorites to find id and also delete from state
+//might make sense to fetch favorites in app.js and pass down

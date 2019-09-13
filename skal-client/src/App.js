@@ -176,7 +176,7 @@ class App extends React.Component {
           return (
             <div>
               <NavBar {...routeProps} drinks={this.state.drinks} resetFoundDrinkState={this.resetFoundDrinkState}/>
-              {this.state.foundDrink ? <DrinkSpecs user={this.state.currentUser}{...routeProps} drink={this.state.foundDrink} resetFoundDrinkState={this.resetFoundDrinkState} /> : this.retrieveDrink(routeProps.match.params.id)}
+              {this.state.foundDrink ? <DrinkSpecs user={this.state.currentUser}{...routeProps} drink={this.state.foundDrink} /> : this.retrieveDrink(routeProps.match.params.id)}
             </div>
           )
         }} />
