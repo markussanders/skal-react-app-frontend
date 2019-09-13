@@ -9,7 +9,6 @@ class DrinkSpecs extends React.Component {
         }
     }
 
-
     renderListItems = items => {
         return items.map(item => <li>{item}</li>)
     }
@@ -28,7 +27,7 @@ class DrinkSpecs extends React.Component {
     }
 
     componentWillMount() {
-        this.fetchComments();
+        this.fetchComments()
     }
 
     favoriteDrink = () => {

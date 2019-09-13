@@ -10,7 +10,7 @@ class NavBar extends React.Component {
 
       <div>
         <nav>
-          <ul id = "nav-bar" >
+          <ul id = "nav-bar" onClick={this.props.resetFoundDrinkState} >
             <li> <Link to="/home"><button className="nav-bar-button"> Home </button></Link>
             </li>
            <li> <Link to="/profile"><button className="nav-bar-button"> Profile </button></Link>
@@ -20,7 +20,7 @@ class NavBar extends React.Component {
           </ul>
         </nav>
       </div>
-      
+
     )
   }
 }
