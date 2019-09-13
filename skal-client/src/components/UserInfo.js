@@ -40,7 +40,7 @@ class UserInfo extends React.Component {
             {this.state.favorites ?
               <div>
                 <h2 id="favorite-drinks-message">Your favorite drinks: </h2>
-                <DrinkCardsContainer drinks={this.state.favorites}/>
+                <DrinkCardsContainer history={this.props.history} drinks={this.state.favorites}/>
               </div>
             : <h2 id="no-favorites-message">Your favorite drinks will appear here</h2>
               }
