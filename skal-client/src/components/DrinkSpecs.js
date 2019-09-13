@@ -40,7 +40,6 @@ class DrinkSpecs extends React.Component {
           user_id: this.props.user.id,
         })
       })
-      .then(console.log('here'))
     }
 
     render () {

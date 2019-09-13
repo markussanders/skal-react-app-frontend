@@ -85,28 +85,29 @@ class App extends React.Component {
       }
     }
 
-      componentDidMount() {
-        fetch('http://localhost:3000/drinks')
+    componentDidMount() {
+      fetch('http://localhost:3000/drinks')
+      .then(resp => resp.json())
+      .then(drinks => {
+        this.setState({drinks})
+      })
+    }
+
+    handleSearch = (results, term)=> {
+      this.setState({
+        searchedDrinks: results,
+        term: term
+      });
+    }
+
+    retrieveDrink = id => {
+      fetch('http://localhost:3000/drinks')
         .then(resp => resp.json())
         .then(drinks => {
-          this.setState({drinks})
+          this.setState({foundDrink: drinks.find(drink => drink.id.toString() === id)})
         });
-      }
+    }
 
-      handleSearch = (results, term)=> {
-        this.setState({
-          searchedDrinks: results,
-          term: term
-        });
-      }
-
-      retrieveDrink = id => {
-        fetch('http://localhost:3000/drinks')
-          .then(resp => resp.json())
-          .then(drinks => {
-            this.setState({foundDrink: drinks.find(drink => drink.id.toString() === id)})
-          });
-      }
 
   render() {
     const { drinks, currentUser } = this.state;
