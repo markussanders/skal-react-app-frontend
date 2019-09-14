@@ -51,28 +51,28 @@ class DrinkSpecs extends React.Component {
     render () {
         const {drink} = this.props;
         return (
-            <div id="drink-spec-page">
-                <img id="drink-spec-img" src={drink.image_url} alt={drink.name}/>
-                <div id="drink-info">
-                    <h4 id="drink-spec-name">{drink.name}</h4>
-                    <p id="drink-spec-desc">{drink.description}</p>
-                    <div id="drink-spec-ingredients-cont" > Ingredients:
-                      <ul id="drink-spec-ingreditents">{this.renderListItems(drink.ingredients)}</ul>
-                    </div>
-                    <div id="drink-spec-tools-cont"> Tools:
-                      <ul id="drink-spec-tools">{this.renderListItems(drink.tools)}</ul>
-                    </div>
-                    <p id="drink-spec-directions">{drink.directions}</p>
-                    <br />
-                    <h5 id="favorites-cont">Favorited by: <span id="favorited-count">{drink.favorited_count}</span></h5>
-                    < br / >
-                    <div id="drink-spec-comments-cont"> Comments:
-                      {(this.state.drinkComments.map(comment => <Comment key={comment.id} comment={comment} />) || " None yet! Be the first!" )}
-                    </div>
-                    <button onClick={this.favoriteDrink}> Favorite </button>
-                    <button onClick={this.deleteFavoriteDrink}> Delete Favorite </button>
-                </div>
-            </div>
+          <div id="drink-spec-page">
+              <img id="drink-spec-img" src={drink.image_url} alt={drink.name}/>
+              <div id="drink-info">
+                  <h4 id="drink-spec-name">{drink.name}</h4>
+                  <p id="drink-spec-desc">{drink.description}</p>
+                  <div id="drink-spec-ingredients-cont" > Ingredients:
+                    <ul id="drink-spec-ingreditents">{this.renderListItems(drink.ingredients)}</ul>
+                  </div>
+                  <div id="drink-spec-tools-cont"> Tools:
+                    <ul id="drink-spec-tools">{this.renderListItems(drink.tools)}</ul>
+                  </div>
+                  <p id="drink-spec-directions">{drink.directions}</p>
+                  <br />
+                  <h5 id="favorites-cont">Favorited by: <span id="favorited-count">{drink.favorited_count}</span></h5>
+                  < br / >
+                  <div id="drink-spec-comments-cont"> Comments:
+                    {(this.state.drinkComments.map(comment => <Comment key={comment.id} comment={comment} />) || " None yet! Be the first!" )}
+                  </div>
+                  <button onClick={this.favoriteDrink}> Favorite </button>
+                  <button onClick={this.deleteFavoriteDrink}> Delete Favorite </button>
+              </div>
+          </div>
         )
     }
 }

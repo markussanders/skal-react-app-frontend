@@ -17,6 +17,7 @@ class UserInfo extends React.Component {
         let drinkIds = user.favorites.map(fav => fav.drink_id);
         const faveDrinks = this.props.drinks.filter( drink => drinkIds.includes(drink.id))
         this.setState({favorites: faveDrinks});
+        this.props.setFavorites(faveDrinks)
       })
   }
 
