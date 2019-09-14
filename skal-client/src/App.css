@@ -387,10 +387,33 @@ li {
 #edit-profile-content {
   margin-top: auto;
   margin-bottom: auto;
+  background: rgba(255, 255, 255, 0.776);
+}
+
+#edit-profile-text {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#account-prompt {
+  font-size: 2em;
+}
+
+#current-user-info {
+  color: goldenrod;
+  font-size: 1.5em;
+  border: 2px dotted black;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-inline-start: 0;
+}
+#current-info-prompt {
+  color: black;
 }
 
 #changes-prompt {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 #edit-profile-form {
@@ -403,7 +426,7 @@ li {
 .edit-input-label {
   position: relative;
   opacity: 1;
-  color: whitesmoke;
+  color: maroon;
   font-size: 2em;
   margin-right: .5em;
 }
@@ -415,7 +438,7 @@ li {
   color: goldenrod;
   font-size: 1em;
   border: none;
-  border-bottom: 2px solid whitesmoke;
+  border-bottom: 2px solid maroon;
   background-color: transparent;
   outline: 0;
 }
