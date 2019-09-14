@@ -15,6 +15,8 @@ class App extends React.Component {
     this.state = {
       drinks: [],
       searchedDrinks: [],
+      foundDrink: '',
+      favorites: '',
       term: '',
       username: '',
       password: '',

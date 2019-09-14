@@ -6,6 +6,7 @@ class DrinkSpecs extends React.Component {
         super(props);
         this.state = {
             drinkComments: [],
+            favoriteIDs: []
         }
     }
 
@@ -41,12 +42,23 @@ class DrinkSpecs extends React.Component {
       })
     }
 
+    componentDidMount(){
+      fetch(`http://localhost:3000/favorites`)
+      .then(resp =>resp.json())
+      .then(data => this.setState({
+        favoriteIDs: data
+      }))
+    }
+
     deleteFavoriteDrink = () => {
-      let favoriteID = 'need to find favorite id'
+      let favoriteDrink = this.state.favoriteIDs.find(favoriteID => favoriteID.drink_id === this.props.drink.id)
+      console.log(favoriteDrink)
+      let favoriteID = favoriteDrink.id
       fetch(`http://localhost:3000/favorites/${favoriteID}`, {
         method: 'DELETE'
       })
     }
+
 
     render () {
         const {drink} = this.props;
@@ -69,8 +81,10 @@ class DrinkSpecs extends React.Component {
                   <div id="drink-spec-comments-cont"> Comments:
                     {(this.state.drinkComments.map(comment => <Comment key={comment.id} comment={comment} />) || " None yet! Be the first!" )}
                   </div>
+                  {this.props.favorites.find(favorite => favorite.id === drink.id) ?
+                  <button onClick={this.deleteFavoriteDrink}> Delete Favorite </button> :
                   <button onClick={this.favoriteDrink}> Favorite </button>
-                  <button onClick={this.deleteFavoriteDrink}> Delete Favorite </button>
+                }
               </div>
           </div>
         )
