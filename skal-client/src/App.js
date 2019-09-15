@@ -138,7 +138,7 @@ class App extends React.Component {
           return (
             <div id="home-page">
               <NavBar {...routeProps} />
-              <HomePage {...routeProps} drinks={drinks} handleSearch={this.handleSearch} currentUser={currentUser} />
+              <HomePage {...routeProps} setFavorites={this.setFavorites} drinks={drinks} handleSearch={this.handleSearch} currentUser={this.state.currentUser} />
             </div>
           ) }}
         />
@@ -165,7 +165,7 @@ class App extends React.Component {
           return (
             <div>
               <NavBar {...routeProps} drinks={this.state.drinks}/>
-              <UserInfo {...routeProps} setFavorites={this.setFavorites} currentUser={this.state.currentUser} drinks={this.state.drinks} />
+              <UserInfo {...routeProps} favorites={this.state.favorites} currentUser={this.state.currentUser} drinks={this.state.drinks} />
             </div>
           )
         }} />
