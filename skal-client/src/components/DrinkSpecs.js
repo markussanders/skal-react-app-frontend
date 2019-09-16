@@ -6,41 +6,43 @@ class DrinkSpecs extends React.Component {
         super(props);
         this.state = {
             drinkComments: [],
+            currentUser: JSON.parse(localStorage.getItem('user')),
         }
     }
-
-
     renderListItems = items => {
         return items.map(item => <li className="list-item">{item}</li>)
     }
 
-    fetchComments = () => {
-        fetch('http://localhost:3000/comments')
-            .then(resp => resp.json())
-            .then(comments => {
-                const drinkComments = comments.filter(comment => comment.drink_id === this.props.drinkid )
-                this.setState({drinkComments: drinkComments});
-            })
-    }
+    // fetchComments = () => {
+    //     fetch('http://localhost:3000/comments')
+    //         .then(resp => resp.json())
+    //         .then(comments => {
+    //             const drinkComments = comments.filter(comment => comment.drink_id === this.props.drinkid )
+    //             this.setState({drinkComments: drinkComments});
+    //         })
+    // }
 
     renderComments = drinkComments => {
         return drinkComments.map(comment => <Comment key={comment.id} comment={comment} />);
     }
 
-    componentWillMount() {
-        this.fetchComments();
-    }
+    // componentWillMount() {
+    //     this.fetchComments();
+    // }
 
     favoriteDrink = () => {
-      fetch(`http://localhost:3000/favorites`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          drink_id: this.props.drink.id,
-          user_id: this.props.user.id,
+      if (this.state.currentUser) {
+        fetch(`http://localhost:3000/favorites`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            drink_id: this.props.drink.id,
+            user_id: this.state.currentUser.id,
+          })
         })
-      })
-      .then(console.log('here'))
+      } else {
+        this.props.history.push('/');
+      }
     }
 
     render () {

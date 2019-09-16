@@ -6,6 +6,7 @@ class Search extends React.Component {
         super(props);
         this.state = {
             term: '',
+            currentUser: JSON.parse(localStorage.getItem('user')),
         }
     }
 
@@ -21,7 +22,7 @@ class Search extends React.Component {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 term: this.state.term,
-                user_id: this.props.currentUser.id
+                user_id: this.state.currentUser.id
             })
         }).then(resp => resp.json()).then(results => {
             this.props.handleSearch(results, this.state.term);

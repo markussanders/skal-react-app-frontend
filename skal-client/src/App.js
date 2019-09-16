@@ -43,7 +43,7 @@ class App extends React.Component {
          currentUser: foundUser[0],
          isLoggedIn: true
         });
-        localStorage.setItem('user', foundUser[0])
+        localStorage.setItem('user', JSON.stringify(foundUser[0]))
       } else {
         this.props.history.push('/login');
       }
