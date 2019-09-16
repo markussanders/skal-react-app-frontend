@@ -9,34 +9,41 @@
        username: "",
        password: "",
        passwordConfirmation: "",
+       currentUser: JSON.parse(localStorage.getItem('user')),
      }
    }
 
-handleSubmitInfo=()=>{
-  if (this.state.password === this.state.passwordConfirmation) {
-    fetch(`http://localhost:3000/users/${this.props.currentUser.id}`, {
-      method: 'PATCH',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        name: (this.state.name || this.props.currentUser.name),
-        username: (this.state.username || this.props.currentUser.username),
-        age: (this.state.age || this.props.currentUser.age),
-        password: (this.state.password || this.props.currentUser.password),
+  handleSubmitInfo=()=>{
+    if (this.state.password === this.state.passwordConfirmation) {
+      fetch(`http://localhost:3000/users/${this.props.currentUser.id}`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          name: (this.state.name || this.state.currentUser.name),
+          username: (this.state.username || this.state.currentUser.username),
+          age: (this.state.age || this.state.currentUser.age),
+          password: (this.state.password || this.state.currentUser.password),
+        })
       })
-    })
+    }
   }
-}
-
+  
    render() {
+     console.log('state = ', this.state.currentUser);
+
      return(
        <div id="edit-profile-content">
           <div id="edit-profile-text">
             <h2 id="account-prompt">Edit Your Account</h2>
             <ul id="current-user-info">
-              <li id="current-info-prompt">Your current information:</li>
-              <li>{`Name: ${this.props.currentUser.name}`}</li>
-              <li>{`Username: ${this.props.currentUser.username}`}</li>
-              <li>{`Age: ${this.props.currentUser.age}`}</li>
+              {this.state.currentUser ? 
+                <div>
+                  <li id="current-info-prompt">Your current information:</li>
+                  <li>{`Name: ${this.state.currentUser.name}`}</li>
+                  <li>{`Username: ${this.state.currentUser.username}`}</li>
+                  <li>{`Age: ${this.state.currentUser.age}`}</li> 
+                </div>
+              : this.props.history.push('/')}
             </ul>
           </div>
           <div>

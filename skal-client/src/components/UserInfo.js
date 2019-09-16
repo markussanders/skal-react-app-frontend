@@ -7,11 +7,12 @@ class UserInfo extends React.Component {
     super(props)
     this.state = {
       favorites: [],
-      currentUser: this.props.currentUser,
+      currentUser: JSON.parse(localStorage.getItem('user')),
     }
   }
 
   componentDidMount() {
+    if (this.state.currentUser) {
     console.log('this.state.currentUser.id =', this.state.currentUser.id);
     fetch(`http://localhost:3000/users/${this.state.currentUser.id}`)
       .then(resp => resp.json())
@@ -20,6 +21,9 @@ class UserInfo extends React.Component {
         const faveDrinks = this.props.drinks.filter( drink => drinkIds.includes(drink.id))
         this.setState({favorites: faveDrinks});
       })
+    } else {
+      this.props.history.push('/');
+    }
   }
 
 
