@@ -45,7 +45,10 @@ class HomePage extends React.Component {
            <div>
               <div>
                 <Search history={this.props.history} handleSearch={this.handleSearch} drinks={this.state.drinks} currentUser={this.props.currentUser} />
-                <DrinkCardsContainer drinks={randomDrinks} history={this.props.history} />
+                <h2 id="featured-prompt">Featured cocktails:</h2>
+                <div id="random-drinks-container">
+                    <DrinkCardsContainer drinks={randomDrinks} history={this.props.history} />
+                </div>
               </div>
            </div>
         )

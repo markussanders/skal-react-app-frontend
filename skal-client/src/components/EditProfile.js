@@ -1,7 +1,4 @@
  import React from 'react'
- import Search from '../containers/Search';
- import Favorites from '../containers/Favorites'
- import DrinkCardsContainer from '../containers/DrinkCardsContainer';
 
  class EditProfile extends React.Component {
    constructor(props){

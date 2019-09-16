@@ -149,7 +149,7 @@ class App extends React.Component {
 
         <Route exact path='/profile' render={(routeProps) => {
           return (
-            <div>
+            <div id="user-info-page">
               <NavBar {...routeProps} drinks={this.state.drinks}/>
               <UserInfo {...routeProps} currentUser={this.state.currentUser} drinks={this.state.drinks} />
             </div>
