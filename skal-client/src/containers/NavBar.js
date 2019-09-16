@@ -17,6 +17,10 @@ class NavBar extends React.Component {
             </li>
             <li> <Link to="/cocktails"><button className="nav-bar-button"> Cocktails </button></Link>
             </li>
+            <li> <button className="nav-bar-button" onClick={() => {
+              localStorage.clear();
+              this.props.history.push('/');
+            }}> Logout </button></li>
           </ul>
         </nav>
       </div>
