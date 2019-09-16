@@ -11,7 +11,7 @@ class DrinkSpecs extends React.Component {
 
 
     renderListItems = items => {
-        return items.map(item => <li>{item}</li>)
+        return items.map(item => <li className="list-item">{item}</li>)
     }
 
     fetchComments = () => {
@@ -57,14 +57,19 @@ class DrinkSpecs extends React.Component {
                     <div id="drink-spec-tools-cont"> Tools:
                       <ul id="drink-spec-tools">{this.renderListItems(drink.tools)}</ul>
                     </div>
-                    <p id="drink-spec-directions">{drink.directions}</p>
-                    <br />
-                    <h5 id="favorites-cont">Favorited by: <span id="favorited-count">{drink.favorited_count}</span></h5>
-                    < br / >
-                    <div id="drink-spec-comments-cont"> Comments:
-                      {(this.state.drinkComments.map(comment => <Comment key={comment.id} comment={comment} />) || " None yet! Be the first!" )}
+                    <div>
+                      <h4 id="drink-spec-directions">Directions: </h4>
+                      <p id="drink-spec-directions-content">{drink.directions}</p>
                     </div>
-                    <button onClick={this.favoriteDrink}> Favorite </button>
+                    <br/>
+                    <div id="drink-spec-favorites-cont">
+                      <h5 id="favorites-cont">Favorited by: <span id="favorited-count">{drink.favorited_count}</span></h5>
+                      <button id="fav-btn" onClick={this.favoriteDrink}> Favorite </button>
+                    </div>
+                    <br/>
+                    {/* <div id="drink-spec-comments-cont"> Comments:
+                      {(this.state.drinkComments.map(comment => <Comment key={comment.id} comment={comment} />) || " None yet! Be the first!" )}
+                    </div> */}
                 </div>
             </div>
         )

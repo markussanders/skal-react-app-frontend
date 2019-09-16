@@ -9,10 +9,6 @@ class DrinkCardsContainer extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  //   this.setState({drinks: this.props.drinks});
-  // }
-
   renderDrinkCards(){
     return this.state.drinks.map(drink => {
       return <DrinkCard drink={drink} key={drink.id} history={this.props.history}/> 
