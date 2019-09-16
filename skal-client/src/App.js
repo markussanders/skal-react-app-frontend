@@ -62,6 +62,7 @@ class App extends React.Component {
     }
 
     createUser  = (credentials) => {
+      console.log('HERE');
       if (credentials.password === credentials.passwordConfirmation) {
         fetch('http://localhost:3000/users', {
           method: 'POST',
@@ -79,10 +80,10 @@ class App extends React.Component {
             this.setState({currentUser: user, isLoggedIn: true});
             return true;
           })
-
       } else {
         return false;
       }
+      return true;
     }
 
       componentDidMount() {
