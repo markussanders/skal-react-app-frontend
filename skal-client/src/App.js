@@ -96,7 +96,7 @@ class App extends React.Component {
     }
 
     handleSearch = (results, term)=> {
-      results.length === 0 ? this.setState({noResults: true}) : 
+      results.length === 0 ? this.setState({noResults: true}) :
       this.setState({
         searchedDrinks: results,
         term: term
@@ -166,7 +166,7 @@ class App extends React.Component {
           return (
             <div id="user-info-page">
               <NavBar {...routeProps} drinks={this.state.drinks}/>
-              <UserInfo {...routeProps} favorites={this.state.favorites} currentUser={this.state.currentUser} drinks={this.state.drinks} />
+              <UserInfo {...routeProps} favorites={this.state.favorites} currentUser={this.state.currentUser} drinks={this.state.drinks}/>
             </div>
           )
         }} />

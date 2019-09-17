@@ -12,6 +12,11 @@ class UserInfo extends React.Component {
     }
   }
 
+  handleSearch = (results, term) => {
+      this.props.handleSearch(results, term);
+      this.props.history.push(`/cocktails/${term}`);
+  }
+
   componentDidMount() {
     if (this.state.currentUser) {
     console.log('this.state.currentUser.id =', this.state.currentUser.id);
