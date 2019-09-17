@@ -5,36 +5,6 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 body, html {
   height: 100%;
   margin: 0;
@@ -83,10 +53,12 @@ body, html {
   display: inline-block;
   outline: none;
   font-size: 1.25em;
+  background: rgba(245, 245, 245, 0.269);
 }
 
 .nav-bar-button:hover {
-  color: gray;
+  color: goldenrod;
+  cursor: grab;
 }
 
 #nav-bar {
@@ -95,6 +67,8 @@ body, html {
   text-align: center;
   padding-top: 4%;
   list-style: none;
+  background: transparent;
+  padding-inline-start: 0;
 }
 
 #nav-bar li {
@@ -109,9 +83,9 @@ body, html {
 
 #search-bar-input {
   width: 20%;
-  height: 30px;
+  height: 29px;
   text-align: center;
-  background: transparent;
+  background: whitesmoke;
   outline: 0;
   /* border-radius: 20px; */
 }
@@ -141,9 +115,12 @@ li {
 }
 
 #drink-cards-container {
-  padding-top: 6%;
+  padding-top: 2%;
   display: flex;
   justify-content: space-around;
+  background-color: white;
+  /* border-radius: 20px; */
+  box-shadow: 0px 20px maroon;
 }
 
 .drink-card {
@@ -151,6 +128,9 @@ li {
   width: 400px;
   height: 400px;
   display: flex;
+  border-left: .25px solid goldenrod;
+  border-top: .5px solid goldenrod;
+  border-right: .25px solid goldenrod;
 }
 
 .drink-card .drink-card-img {
@@ -187,13 +167,14 @@ li {
 
 
 #random-drinks-container {
-  display: inline-flex;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
-#random-drinks-container img {
+/* #random-drinks-container img {
   max-width: 400px;
   max-height: 400px;
-}
+} */
 
 #Logo {
   color: white;
@@ -353,12 +334,47 @@ li {
   padding-left: 30%;
 }
 
-
+#home-page {
+  background-color: black;
+  background: url('https://media.istockphoto.com/photos/background-chalkboard-texture-picture-id508859468?k=6&m=508859468&s=612x612&w=0&h=IZBb8msJpXEvgyI8goZVef3AH1g44WZLT6FvOxnjXho=');
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 10%;
+  overflow: hidden;
+  
+}
+#featured-prompt {
+  font-size: 2em;
+  color: goldenrod;
+}
 
 #drink-description {
   width: 80%;
   font-size: 40px;
 }
+
+#drink-spec-img {
+  margin-top: 5%;
+  border-width: 2px;
+  border-color: maroon;
+  border-style: solid none solid none ;
+}
+
+#drink-spec-name {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  font-size: 2em;
+}
+
+#drink-spec-desc {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #drink-spec-ingredients {
   width: 40%;
 }
@@ -366,16 +382,52 @@ li {
 #drink-spec-tools-cont {
   width: 40%;
 }
-#drink-spec-directions{
+
+#drink-spec-directions-content{
   width: 80%;
+  margin-left: auto;
+  margin-right: auto; 
+  display: block;
 }
 
 #drink-spec-comments-cont {
   width: 40%;
 }
 
+#drink-spec-favorites-cont {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 #favorites-cont {
-  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+#fav-btn {
+  border: none;
+  background: goldenrod;
+  color: maroon;
+  font-size: 1em;
+  height: 40%;
+  border-radius: 5px;
+}
+
+#fav-btn:hover {
+  background: maroon;
+  color: goldenrod
+}
+
+.list-item {
+  border: 1px solid black;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-size: 1em;
+  display: block;
+}
+.list-item:hover {
+  color: maroon;
 }
 
 #drink-cards-container {
@@ -387,4 +439,133 @@ li {
 .drink-card {
   padding: 1em;
   object-fit: fill;
+}
+
+
+#user-info-page {
+  font-family: 'Alegreya Sans SC',
+  sans-serif;
+  background-color: black;
+  position: absolute;
+  background: url('https://i.pinimg.com/originals/7a/a5/37/7aa5374ff4da33e639897e68bf2d11dc.jpg') no-repeat center fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#profile-nav-bar {
+  display: flex;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-inline-start: 0;
+  justify-content: center;
+  color: white;
+}
+.prof-option .nav-bar-button {
+  font-size: .95em;
+  color: white;
+}
+
+#user-info-page ul#nav-bar {  
+  color: white;
+  font: white;
+}
+
+.prof-option .nav-bar-button:hover {
+  color: maroon;
+  cursor: pointer;
+}
+
+#user-info-fav-drinks-cont {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#favorite-drinks-message {
+  color: white;
+}
+
+#edit-profile-page {
+  font-family: 'Alegreya Sans SC', sans-serif;
+  background-color: black;
+  position: absolute;
+  background: url('https://newenglandliving.tv/wp-content/uploads/2018/12/The-Broken-Dram_interior3-1050x700.jpg') no-repeat center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+#edit-profile-page #nav-bar {
+  top: 0;
+  position: absolute;
+  text-align: right;
+  padding-top: 0;
+  padding-left: 8em;
+  margin-left: auto;
+  margin-right: auto;
+}
+#edit-profile-page #nav-bar li {
+  background: none;
+}
+
+#edit-profile-content {
+  margin-top: auto;
+  margin-bottom: auto;
+  background: rgba(255, 255, 255, 0.776);
+}
+
+#edit-profile-text {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#account-prompt {
+  font-size: 2em;
+}
+
+#current-user-info {
+  color: goldenrod;
+  font-size: 1.5em;
+  border: 2px dotted black;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-inline-start: 0;
+}
+#current-info-prompt {
+  color: black;
+}
+
+#changes-prompt {
+  font-size: 1.5em;
+}
+
+#edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: left;
+}
+
+.edit-input-label {
+  position: relative;
+  opacity: 1;
+  color: maroon;
+  font-size: 2em;
+  margin-right: .5em;
+}
+
+.edit-input {
+  flex-grow: 1;
+  width: 5em;
+  padding-left: 20px;
+  color: goldenrod;
+  font-size: 1em;
+  border: none;
+  border-bottom: 2px solid maroon;
+  background-color: transparent;
+  outline: 0;
 }

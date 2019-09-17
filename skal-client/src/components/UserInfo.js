@@ -6,19 +6,36 @@ class UserInfo extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      currentUser: this.props.currentUser,
+      favorites: [],
+      currentUser: JSON.parse(localStorage.getItem('user')),
     }
   }
+
+  componentDidMount() {
+    if (this.state.currentUser) {
+    console.log('this.state.currentUser.id =', this.state.currentUser.id);
+    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`)
+      .then(resp => resp.json())
+      .then(user => {
+        let drinkIds = user.favorites.map(fav => fav.drink_id);
+        const faveDrinks = this.props.drinks.filter( drink => drinkIds.includes(drink.id))
+        this.setState({favorites: faveDrinks});
+      })
+    } else {
+      this.props.history.push('/');
+    }
+  }
+
 
   render() {
     return(
       <div>
           <div>
-              <ul id = "profile-nav-bar" >
-                <li className="list-item">
-                <button href='#' className="nav-bar-button" onClick={() => this.props.history.push('/edit-profile')}> Edit Profile </button>
+              <ul id="profile-nav-bar">
+                <li className="prof-option">
+                  <button href='#' className="nav-bar-button" onClick={() => this.props.history.push('/edit-profile')}> Edit Profile </button>
                 </li>
-                <li className="list-item"> <button href='#' className="nav-bar-button" onClick={this.handleViewBarCartClick}> View Bar Cart </button>
+                <li className="prof-option"> <button href='#' className="nav-bar-button" onClick={this.handleViewBarCartClick}> View Bar Cart </button>
                 </li>
               </ul>
               <div>
@@ -27,11 +44,11 @@ class UserInfo extends React.Component {
           </div>
           < div >
             {this.props.favorites ?
-              <div>
+              <div id="user-info-fav-drinks-cont">
                 <h2 id="favorite-drinks-message">Your favorite drinks: </h2>
                 <DrinkCardsContainer history={this.props.history} drinks={this.props.favorites}/>
               </div>
-            : <h2 id="no-favorites-message">Your favorite drinks will appear here</h2>
+            : <h2 id="favorite-drinks-message">Your favorite drinks will appear here</h2>
               }
           </div>
       </div>
@@ -40,4 +57,3 @@ class UserInfo extends React.Component {
 }
 
 export default UserInfo;
-//this is user

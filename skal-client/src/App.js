@@ -45,7 +45,7 @@ class App extends React.Component {
          currentUser: foundUser[0],
          isLoggedIn: true
         });
-        localStorage.setItem('user', foundUser[0])
+        localStorage.setItem('user', JSON.stringify(foundUser[0]))
       } else {
         this.props.history.push('/login');
       }
@@ -64,6 +64,7 @@ class App extends React.Component {
     }
 
     createUser  = (credentials) => {
+      console.log('HERE');
       if (credentials.password === credentials.passwordConfirmation) {
         fetch('http://localhost:3000/users', {
           method: 'POST',
@@ -81,10 +82,10 @@ class App extends React.Component {
             this.setState({currentUser: user, isLoggedIn: true});
             return true;
           })
-
       } else {
         return false;
       }
+      return true;
     }
 
     componentDidMount() {
@@ -138,7 +139,7 @@ class App extends React.Component {
           return (
             <div id="home-page">
               <NavBar {...routeProps} />
-              <HomePage {...routeProps} setFavorites={this.setFavorites} drinks={drinks} handleSearch={this.handleSearch} currentUser={this.state.currentUser} />
+              <HomePage {...routeProps} currentUser={this.state.currentUser} setFavorites={this.setFavorites} drinks={drinks} handleSearch={this.handleSearch} currentUser={this.state.currentUser} />
             </div>
           ) }}
         />
@@ -163,7 +164,7 @@ class App extends React.Component {
 
         <Route exact path='/profile' render={(routeProps) => {
           return (
-            <div>
+            <div id="user-info-page">
               <NavBar {...routeProps} drinks={this.state.drinks}/>
               <UserInfo {...routeProps} favorites={this.state.favorites} currentUser={this.state.currentUser} drinks={this.state.drinks} />
             </div>
@@ -172,7 +173,7 @@ class App extends React.Component {
 
         <Route exact path='/edit-profile' render={(routeProps) => {
           return (
-            <div>
+            <div id="edit-profile-page">
               <NavBar {...routeProps} drinks={this.state.drinks}  />
               <EditProfile {...routeProps} currentUser={currentUser} setUser={this.setUser}/>
             </div>
