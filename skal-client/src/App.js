@@ -15,6 +15,8 @@ class App extends React.Component {
     this.state = {
       drinks: [],
       searchedDrinks: [],
+      foundDrink: '',
+      favorites: '',
       term: '',
       username: '',
       password: '',
@@ -86,28 +88,40 @@ class App extends React.Component {
       return true;
     }
 
-      componentDidMount() {
-        fetch('http://localhost:3000/drinks')
+    componentDidMount() {
+      fetch('http://localhost:3000/drinks')
+      .then(resp => resp.json())
+      .then(drinks => {
+        this.setState({drinks})
+      })
+    }
+
+    handleSearch = (results, term)=> {
+      this.setState({
+        searchedDrinks: results,
+        term: term
+      });
+    }
+
+    retrieveDrink = id => {
+      fetch('http://localhost:3000/drinks')
         .then(resp => resp.json())
         .then(drinks => {
-          this.setState({drinks})
+          this.setState({foundDrink: drinks.find(drink => drink.id.toString() === id)})
         });
-      }
+    }
 
-      handleSearch = (results, term)=> {
-        this.setState({
-          searchedDrinks: results,
-          term: term
-        });
-      }
+    resetFoundDrinkState = () => {
+      this.setState({
+        foundDrink:''
+      })
+    }
 
-      retrieveDrink = id => {
-        fetch('http://localhost:3000/drinks')
-          .then(resp => resp.json())
-          .then(drinks => {
-            this.setState({foundDrink: drinks.find(drink => drink.id.toString() === id)})
-          });
-      }
+    setFavorites = (favorites) => {
+      this.setState({
+        favorites: favorites
+      })
+    }
 
   render() {
     const { drinks, currentUser } = this.state;
@@ -125,7 +139,7 @@ class App extends React.Component {
           return (
             <div id="home-page">
               <NavBar {...routeProps} />
-              <HomePage {...routeProps} drinks={drinks} handleSearch={this.handleSearch} currentUser={currentUser} />
+              <HomePage {...routeProps} currentUser={this.state.currentUser} setFavorites={this.setFavorites} drinks={drinks} handleSearch={this.handleSearch} currentUser={this.state.currentUser} />
             </div>
           ) }}
         />
@@ -152,7 +166,7 @@ class App extends React.Component {
           return (
             <div id="user-info-page">
               <NavBar {...routeProps} drinks={this.state.drinks}/>
-              <UserInfo {...routeProps} currentUser={this.state.currentUser} drinks={this.state.drinks} />
+              <UserInfo {...routeProps} favorites={this.state.favorites} currentUser={this.state.currentUser} drinks={this.state.drinks} />
             </div>
           )
         }} />
@@ -170,12 +184,11 @@ class App extends React.Component {
           console.log('state=', this.state);
           return (
             <div>
-              <NavBar {...routeProps} drinks={this.state.drinks}/>
-              {this.state.foundDrink ? <DrinkSpecs  user={this.state.currentUser}{...routeProps} drink={this.state.foundDrink} /> : this.retrieveDrink(routeProps.match.params.id)}
+              <NavBar {...routeProps} drinks={this.state.drinks} resetFoundDrinkState={this.resetFoundDrinkState}/>
+              {this.state.foundDrink ? <DrinkSpecs favorites={this.state.favorites} user={this.state.currentUser}{...routeProps} drink={this.state.foundDrink} /> : this.retrieveDrink(routeProps.match.params.id)}
             </div>
           )
         }} />
-
       </div>
     );
   }

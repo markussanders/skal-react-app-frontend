@@ -7,6 +7,7 @@ class DrinkSpecs extends React.Component {
         this.state = {
             drinkComments: [],
             currentUser: JSON.parse(localStorage.getItem('user')),
+            favoriteIDs: []
         }
     }
     renderListItems = items => {
@@ -23,7 +24,7 @@ class DrinkSpecs extends React.Component {
     // }
 
     renderComments = drinkComments => {
-        return drinkComments.map(comment => <Comment key={comment.id} comment={comment} />);
+      return drinkComments.map(comment => <Comment key={comment.id} comment={comment} />);
     }
 
     // componentWillMount() {
@@ -40,42 +41,65 @@ class DrinkSpecs extends React.Component {
             user_id: this.state.currentUser.id,
           })
         })
-      } else {
-        this.props.history.push('/');
       }
     }
 
+    componentDidMount(){
+      fetch(`http://localhost:3000/favorites`)
+      .then(resp =>resp.json())
+      .then(data => this.setState({
+        favoriteIDs: data
+      }))
+    }
+
+    deleteFavoriteDrink = () => {
+      let favoriteDrink = this.state.favoriteIDs.find(favoriteID => favoriteID.drink_id === this.props.drink.id)
+      console.log(favoriteDrink)
+      let favoriteID = favoriteDrink.id
+      fetch(`http://localhost:3000/favorites/${favoriteID}`, {
+        method: 'DELETE'
+      })
+    }
+
     render () {
-        const {drink} = this.props;
-        return (
-            <div id="drink-spec-page">
-                <img id="drink-spec-img" src={drink.image_url} alt={drink.name}/>
-                <div id="drink-info">
-                    <h4 id="drink-spec-name">{drink.name}</h4>
-                    <p id="drink-spec-desc">{drink.description}</p>
-                    <div id="drink-spec-ingredients-cont" > Ingredients:
-                      <ul id="drink-spec-ingreditents">{this.renderListItems(drink.ingredients)}</ul>
-                    </div>
-                    <div id="drink-spec-tools-cont"> Tools:
-                      <ul id="drink-spec-tools">{this.renderListItems(drink.tools)}</ul>
-                    </div>
-                    <div>
-                      <h4 id="drink-spec-directions">Directions: </h4>
-                      <p id="drink-spec-directions-content">{drink.directions}</p>
-                    </div>
-                    <br/>
-                    <div id="drink-spec-favorites-cont">
-                      <h5 id="favorites-cont">Favorited by: <span id="favorited-count">{drink.favorited_count}</span></h5>
-                      <button id="fav-btn" onClick={this.favoriteDrink}> Favorite </button>
-                    </div>
-                    <br/>
-                    {/* <div id="drink-spec-comments-cont"> Comments:
-                      {(this.state.drinkComments.map(comment => <Comment key={comment.id} comment={comment} />) || " None yet! Be the first!" )}
-                    </div> */}
+      const {drink} = this.props;
+      return (
+        <div id="drink-spec-page">
+            <img id="drink-spec-img" src={drink.image_url} alt={drink.name}/>
+            <div id="drink-info">
+                <h4 id="drink-spec-name">{drink.name}</h4>
+                <p id="drink-spec-desc">{drink.description}</p>
+                <div id="drink-spec-ingredients-cont" > Ingredients:
+                  <ul id="drink-spec-ingreditents">{this.renderListItems(drink.ingredients)}</ul>
                 </div>
+                <div id="drink-spec-tools-cont"> Tools:
+                  <ul id="drink-spec-tools">{this.renderListItems(drink.tools)}</ul>
+                </div>
+                <div>
+                  <h4 id="drink-spec-directions">Directions: </h4>
+                  <p id="drink-spec-directions-content">{drink.directions}</p>
+                </div>
+                <br />
+                <div id="drink-spec-favorites-cont">
+                  <h5 id="favorites-cont">Favorited by: <span id="favorited-count">{drink.favorited_count}</span></h5>
+                  {this.props.favorites.find(favorite => favorite.id === drink.id) ?
+                  <button id="fav-btn" onClick={this.deleteFavoriteDrink}> Delete Favorite </button> :
+                  <button id="fav-btn" onClick={this.favoriteDrink}> Favorite </button>
+                  }
+              </div>
+              < br / >
+              {/* <div id="drink-spec-comments-cont"> Comments:
+                {(this.state.drinkComments.map(comment => <Comment key={comment.id} comment={comment} />) || " None yet! Be the first!" )}
+              </div> */}
             </div>
-        )
+        </div>
+      )
     }
 }
 
 export default DrinkSpecs
+// =======
+//       } else {
+//         this.props.history.push('/');
+//       }
+//     }

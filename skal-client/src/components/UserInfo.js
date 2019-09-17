@@ -43,13 +43,13 @@ class UserInfo extends React.Component {
               </div>
           </div>
           < div >
-          {this.state.favorites ?
-          <div id="user-info-fav-drinks-cont">
-            <h2 id="favorite-drinks-message">Your favorite drinks: </h2>
-            <DrinkCardsContainer drinks={this.state.favorites}/>
-          </div>
-          : <h2 id="favorite-drinks-message">Your favorite drinks will appear here</h2>
-          }
+            {this.props.favorites ?
+              <div id="user-info-fav-drinks-cont">
+                <h2 id="favorite-drinks-message">Your favorite drinks: </h2>
+                <DrinkCardsContainer history={this.props.history} drinks={this.props.favorites}/>
+              </div>
+            : <h2 id="favorite-drinks-message">Your favorite drinks will appear here</h2>
+              }
           </div>
       </div>
     )
@@ -57,4 +57,3 @@ class UserInfo extends React.Component {
 }
 
 export default UserInfo;
-//this is user
