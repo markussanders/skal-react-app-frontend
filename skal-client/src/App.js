@@ -38,18 +38,17 @@ class App extends React.Component {
     return this.state.isLoggedIn;
   }
 
-   setUser = (foundUser) => {
-
-     if (foundUser) {
-       this.setState({
-         currentUser: foundUser[0],
-         isLoggedIn: true
-        });
-        localStorage.setItem('user', JSON.stringify(foundUser[0]))
-      } else {
-        this.props.history.push('/login');
-      }
-   }
+  setUser = (foundUser) => {
+    if (foundUser) {
+      this.setState({
+        currentUser: foundUser[0],
+        isLoggedIn: true
+      });
+      localStorage.setItem('user', JSON.stringify(foundUser[0]))
+    } else {
+      this.props.history.push('/login');
+    }
+  }
 
 
   fetchUser = (username) => {
@@ -97,6 +96,7 @@ class App extends React.Component {
     }
 
     handleSearch = (results, term)=> {
+      results.length === 0 ? this.setState({noResults: true}) : 
       this.setState({
         searchedDrinks: results,
         term: term

@@ -123,6 +123,11 @@ li {
   box-shadow: 0px 20px maroon;
 }
 
+#user-info-fav-drinks-cont #drink-cards-container {
+  height: 400px;
+  overflow: scroll;
+}
+
 .drink-card {
   position: relative;
   width: 400px;

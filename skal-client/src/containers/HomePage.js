@@ -12,19 +12,26 @@ class HomePage extends React.Component {
         this.state = {
             searchedDrinks: [],
             randomDrinks: this.generateRandomDrinks(),
-            drinks: props.drinks
+            drinks: props.drinks,
+            currentUser: JSON.stringify(localStorage.getItem('user')),
         };
     }
 
     componentDidMount() {
-      fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
-        .then(resp => resp.json())
-        .then(user => {
-          let drinkIds = user.favorites.map(fav => fav.drink_id);
-          const faveDrinks = this.props.drinks.filter( drink => drinkIds.includes(drink.id))
-          this.setState({favorites: faveDrinks});
-          this.props.setFavorites(faveDrinks)
-        })
+        if (this.state.currentUser) {
+            fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
+            .then(resp => resp.json())
+            .then(user => {
+                if (user.favorites) {
+                    let drinkIds = user.favorites.map(fav => fav.drink_id);
+                    const faveDrinks = this.props.drinks.filter( drink => drinkIds.includes(drink.id))
+                    this.setState({favorites: faveDrinks});
+                    this.props.setFavorites(faveDrinks)
+                }
+            })
+        } else {
+            this.props.history.push('/');
+        }
     }
 
     generateRandomDrinks = () => {
@@ -38,7 +45,7 @@ class HomePage extends React.Component {
     }
 
     handleSearch = (results, term) => {
-        this.props.handleSearch(results, term)
+        this.props.handleSearch(results, term);
         this.props.history.push(`/cocktails/${term}`);
     }
 
@@ -46,10 +53,12 @@ class HomePage extends React.Component {
         let randomDrinks = this.state.randomDrinks;
         return (
            <div>
-              <div>
-                <Search history={this.props.history} handleSearch={this.handleSearch} drinks={this.state.drinks} currentUser={this.props.currentUser} />
-                <DrinkCardsContainer drinks={randomDrinks} history={this.props.history} />
-              </div>
+               {this.state.currentUser ? 
+                <div>
+                    <Search history={this.props.history} handleSearch={this.handleSearch} drinks={this.state.drinks} currentUser={this.props.currentUser} />
+                    <DrinkCardsContainer drinks={randomDrinks} history={this.props.history} />
+                </div>
+             : this.props.history.push('/') }
            </div>
         )
     }
