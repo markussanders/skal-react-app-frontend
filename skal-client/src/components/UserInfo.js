@@ -8,6 +8,7 @@ class UserInfo extends React.Component {
     this.state = {
       favorites: [],
       currentUser: JSON.parse(localStorage.getItem('user')),
+      hasFavorites: false,
     }
   }
 
@@ -17,9 +18,13 @@ class UserInfo extends React.Component {
     fetch(`http://localhost:3000/users/${this.state.currentUser.id}`)
       .then(resp => resp.json())
       .then(user => {
-        let drinkIds = user.favorites.map(fav => fav.drink_id);
-        const faveDrinks = this.props.drinks.filter( drink => drinkIds.includes(drink.id))
-        this.setState({favorites: faveDrinks});
+        if (user.favorites.length >= 1) {
+          let drinkIds = user.favorites.map(fav => fav.drink_id);
+          const faveDrinks = this.props.drinks.filter( drink => drinkIds.includes(drink.id))
+          this.setState({favorites: faveDrinks, hasFavorites: true});
+        } else {
+          this.setState({hasFavorites: false})
+        }
       })
     } else {
       this.props.history.push('/');
@@ -43,10 +48,10 @@ class UserInfo extends React.Component {
               </div>
           </div>
           < div >
-            {this.props.favorites ?
+            {this.state.hasFavorites ?
               <div id="user-info-fav-drinks-cont">
                 <h2 id="favorite-drinks-message">Your favorite drinks: </h2>
-                <DrinkCardsContainer history={this.props.history} drinks={this.props.favorites}/>
+                <DrinkCardsContainer history={this.props.history} drinks={this.state.favorites}/>
               </div>
             : <h2 id="favorite-drinks-message">Your favorite drinks will appear here</h2>
               }
