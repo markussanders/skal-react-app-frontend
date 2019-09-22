@@ -41,10 +41,15 @@ class DrinkSpecs extends React.Component {
             user_id: this.state.currentUser.id,
           })
         })
+        .then(this.fetchFavorites())
       }
     }
 
-    componentDidMount(){
+    componentDidMount = () => {
+      this.fetchFavorites()
+    }
+
+    fetchFavorites = () => {
       fetch(`http://localhost:3000/favorites`)
       .then(resp =>resp.json())
       .then(data => this.setState({
@@ -59,6 +64,7 @@ class DrinkSpecs extends React.Component {
       fetch(`http://localhost:3000/favorites/${favoriteID}`, {
         method: 'DELETE'
       })
+      .then(this.fetchFavorites)
     }
 
     render () {
